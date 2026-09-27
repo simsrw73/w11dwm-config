@@ -1,0 +1,186 @@
+[
+  {
+    "id": 1790464732086,
+    "title": "Bitwarden",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\Bitwarden\\Bitwarden.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\bitwarden.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732087,
+    "title": "Thunderbird",
+    "path": "C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\thunderbird.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732088,
+    "title": "Spark Desktop",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\SparkDesktop\\Spark Desktop.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\spark_desktop.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732089,
+    "title": "TickTick",
+    "path": "C:\\Program Files (x86)\\TickTick\\TickTick.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\ticktick.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732090,
+    "title": "Obsidian",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\Obsidian\\Obsidian.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\obsidian.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732091,
+    "title": "Notepad++",
+    "path": "C:\\Program Files\\Notepad++\\notepad++.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\notepad.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732092,
+    "title": "Zed",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\Zed\\Zed.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\zed.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732093,
+    "title": "WinBox",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Mikrotik.Winbox_Microsoft.Winget.Source_8wekyb3d8bbwe\\WinBox.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\winbox.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732094,
+    "title": "File Explorer",
+    "path": "explorer.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\file_explorer.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732095,
+    "title": "Koffee",
+    "path": "C:\\Users\\simsr\\.local\\share\\scoop\\apps\\koffee\\current\\Koffee.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\koffee.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732096,
+    "title": "File Pilot",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Voidstar\\FilePilot\\FPilot.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\file_pilot.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732097,
+    "title": "Gemini",
+    "path": "C:\\Users\\simsr\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Chrome Apps\\Gemini.lnk",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\gemini.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732098,
+    "title": "GitHub Copilot",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\GitHub Copilot\\github.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\github_copilot.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732099,
+    "title": "Comet",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Perplexity\\Comet\\Application\\comet.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\comet.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732100,
+    "title": "Zen",
+    "path": "C:\\Program Files\\Zen Browser\\zen.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\zen.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732101,
+    "title": "Brave",
+    "path": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\brave.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732102,
+    "title": "Firefox",
+    "path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\firefox.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732103,
+    "title": "Accordance",
+    "path": "C:\\Program Files (x86)\\OakTree\\Accordance\\Accordance.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\accordance.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732104,
+    "title": "Mp3tag",
+    "path": "C:\\Program Files\\Mp3tag\\Mp3tag.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\mp3tag.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732105,
+    "title": "EverythingToolbar",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\EverythingToolbar\\EverythingToolbar.Launcher.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\everythingtoolbar.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732106,
+    "title": "Task Manager DeLuxe",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Microsoft\\WinGet\\Packages\\MiTeC.TaskManagerDeLuxe_Microsoft.Winget.Source_8wekyb3d8bbwe\\TMX64.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\task_manager_deluxe.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732107,
+    "title": "Task Manager TMOG",
+    "path": "C:\\Users\\simsr\\AppData\\Local\\Programs\\Task Manager TMOG\\Task Manager.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\task_manager_tmog.png",
+    "type": "app",
+    "group": null
+  },
+  {
+    "id": 1790464732108,
+    "title": "System Informer",
+    "path": "C:\\Program Files\\SystemInformer\\SystemInformer.exe",
+    "icon": "C:\\Users\\simsr\\.config\\yasb\\launchpad\\icons\\system_informer.png",
+    "type": "app",
+    "group": null
+  }
+]

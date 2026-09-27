@@ -1,0 +1,5 @@
+# Everything here is produced by sync.ps1 from an allowlist; keep stray files out.
+*.log
+*.log.*
+*.bak
+*.tmp

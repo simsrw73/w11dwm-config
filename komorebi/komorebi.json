@@ -1,0 +1,403 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.json",
+  "app_specific_configuration_path": "$Env:KOMOREBI_CONFIG_HOME/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "mouse_follows_focus": false,
+  "default_workspace_padding": 8,
+  "default_container_padding": 6,
+  "border": true,
+  "border_width": 2,
+  "border_offset": 0,
+  "border_style": "Rounded",
+  "border_implementation": "Komorebi",
+  "transparency": true,
+  "transparency_alpha": 235,
+  "animation": {
+    "enabled": true,
+    "duration": 180,
+    "style": "EaseOutCubic"
+  },
+  "stackbar": {
+    "mode": "OnStack",
+    "height": 32,
+    "label": "Title",
+    "tabs": {
+      "width": 240,
+      "font_family": "Inter",
+      "font_size": 13
+    }
+  },
+  "theme": {
+    "palette": "Catppuccin",
+    "name": "Mocha",
+    "single_border": "Lavender",
+    "stack_border": "Blue",
+    "monocle_border": "Mauve",
+    "floating_border": "Peach",
+    "unfocused_border": "Surface0",
+    "unfocused_locked_border": "Red",
+    "stackbar_background": "Crust",
+    "stackbar_focused_text": "Lavender",
+    "stackbar_unfocused_text": "Overlay1",
+    "bar_accent": "Lavender"
+  },
+  "display_index_preferences": {
+    "0": "H6TNT84",
+    "1": "209NTCZBE803"
+  },
+  "ignore_rules": [
+    {
+      "kind": "Exe",
+      "id": "Koffee.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Bitwarden.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Task Manager.exe",
+      "matching_strategy": "Equals"
+    }
+  ],
+  "monitors": [
+    {
+      "workspaces": [
+        {
+          "name": "dev",
+          "layout": "VerticalStack",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Zed.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "WindowsTerminal.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
+        },
+        {
+          "name": "notes",
+          "layout": "VerticalStack",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Obsidian.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
+        },
+        {
+          "name": "ai-lab",
+          "layout": "Grid",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Perplexity.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "claude.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "ChatGPT.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "github.exe",
+              "matching_strategy": "Equals"
+            },
+            [
+              {
+                "kind": "Exe",
+                "id": "chrome.exe",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Title",
+                "id": "Gemini",
+                "matching_strategy": "Contains"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "admin",
+          "layout": "Grid",
+          "initial_workspace_rules": [
+            {
+              "kind": "Path",
+              "id": "sysinternals",
+              "matching_strategy": "Contains"
+            },
+            {
+              "kind": "Exe",
+              "id": "mmc.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "regedit.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "UniGetUI.exe",
+              "matching_strategy": "Equals"
+            },
+            [
+              {
+                "kind": "Exe",
+                "id": "VSCodium.exe",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Path",
+                "id": "Windhawk",
+                "matching_strategy": "Contains"
+              }
+            ],
+            {
+              "kind": "Exe",
+              "id": "PowerToys.Settings.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "HWiNFO64.EXE",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "WizTree64.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "cpuz.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "DiskInfo64.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "WinaeroTweaker.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "RegistryFinder.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "msinfo32.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "perfmon.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Display Driver Uninstaller.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "PathEditor.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "FileTypesMan.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "wslsettings.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "WinBox.exe",
+              "matching_strategy": "Equals"
+            },
+            [
+              {
+                "kind": "Class",
+                "id": "CabinetWClass",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Title",
+                "id": "Control Panel",
+                "matching_strategy": "Contains"
+              }
+            ],
+            [
+              {
+                "kind": "Class",
+                "id": "ApplicationFrameWindow",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Title",
+                "id": "Settings",
+                "matching_strategy": "Equals"
+              }
+            ],
+            [
+              {
+                "kind": "Class",
+                "id": "ApplicationFrameWindow",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Title",
+                "id": "Windows Security",
+                "matching_strategy": "Equals"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "workspaces": [
+        {
+          "name": "research",
+          "layout": "VerticalStack",
+          "window_container_behaviour": "Append",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "zen.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "brave.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "msedge.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Typora.exe",
+              "matching_strategy": "Equals"
+            },
+            [
+              {
+                "kind": "Exe",
+                "id": "chrome.exe",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Title",
+                "id": "Gemini",
+                "matching_strategy": "DoesNotContain"
+              }
+            ]
+          ]
+        },
+        {
+          "name": "comms",
+          "layout": "Columns",
+          "initial_workspace_rules": [
+            {
+              "kind": "Exe",
+              "id": "Spark Desktop.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "TickTick.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Fantastical.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
+        },
+        {
+          "name": "files",
+          "layout": "Columns",
+          "initial_workspace_rules": [
+            [
+              {
+                "kind": "Class",
+                "id": "CabinetWClass",
+                "matching_strategy": "Equals"
+              },
+              {
+                "kind": "Title",
+                "id": "Control Panel",
+                "matching_strategy": "DoesNotContain"
+              }
+            ],
+            {
+              "kind": "Exe",
+              "id": "Everything.exe",
+              "matching_strategy": "Equals"
+            }
+          ]
+        },
+        {
+          "name": "games",
+          "layout": "VerticalStack",
+          "window_container_behaviour": "Append",
+          "initial_workspace_rules": [
+            { "kind": "Exe", "id": "steam.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "steamwebhelper.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "GalaxyClient.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Amazon Games UI.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Battle.net.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "BethesdaNetLauncher.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "EpicGamesLauncher.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "EADesktop.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "UbisoftConnect.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "upc.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "XboxPcApp.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Riot Client.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "RiotClientUx.exe", "matching_strategy": "Equals" },
+            { "kind": "Path", "id": "Rockstar Games\\Launcher", "matching_strategy": "Contains" },
+            { "kind": "Exe", "id": "Playnite.DesktopApp.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "heroic.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "itch.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Vortex.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "NexusMods.App.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "ModOrganizer.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Wabbajack.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "r2modman.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "Thunderstore Mod Manager.exe", "matching_strategy": "Equals" },
+            { "kind": "Exe", "id": "CurseForge.exe", "matching_strategy": "Equals" }
+          ]
+        },
+        {
+          "name": "scratch",
+          "layout": "BSP"
+        }
+      ]
+    }
+  ]
+}

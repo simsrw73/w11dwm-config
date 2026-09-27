@@ -1,0 +1,578 @@
+{
+  "Hotkey": "Ctrl \u002B ~",
+  "OpenResultModifiers": "Alt",
+  "ColorScheme": "System",
+  "ShowOpenResultHotkey": true,
+  "WindowSize": 1108,
+  "PreviewHotkey": "F1",
+  "AutoCompleteHotkey": "Tab",
+  "AutoCompleteHotkey2": "",
+  "SelectNextItemHotkey": "Ctrl \u002B N",
+  "SelectNextItemHotkey2": "",
+  "SelectPrevItemHotkey": "Ctrl \u002B P",
+  "SelectPrevItemHotkey2": "",
+  "SelectNextPageHotkey": "Ctrl \u002B Shift \u002B N",
+  "SelectPrevPageHotkey": "Ctrl \u002B Shift \u002B P",
+  "OpenContextMenuHotkey": "Ctrl\u002BO",
+  "SettingWindowHotkey": "Ctrl\u002BI",
+  "OpenHistoryHotkey": "Ctrl\u002BH",
+  "CycleHistoryUpHotkey": "Alt \u002B Up",
+  "CycleHistoryDownHotkey": "Alt \u002B Down",
+  "DialogJumpHotkey": "Alt \u002B G",
+  "Language": "system",
+  "Theme": "Catppuccin Mocha",
+  "UseDropShadowEffect": true,
+  "BackdropType": 1,
+  "ReleaseNotesVersion": "2.1.3",
+  "WindowHeightSize": 42,
+  "ItemHeightSize": 58,
+  "QueryBoxFontSize": 16,
+  "ResultItemFontSize": 18,
+  "ResultSubItemFontSize": 12,
+  "QueryBoxFont": "Atkinson Hyperlegible Next",
+  "QueryBoxFontStyle": null,
+  "QueryBoxFontWeight": null,
+  "QueryBoxFontStretch": null,
+  "ResultFont": "Atkinson Hyperlegible Next",
+  "ResultFontStyle": null,
+  "ResultFontWeight": null,
+  "ResultFontStretch": null,
+  "ResultSubFont": "Atkinson Hyperlegible Next",
+  "ResultSubFontStyle": "Normal",
+  "ResultSubFontWeight": "Light",
+  "ResultSubFontStretch": "Normal",
+  "UseGlyphIcons": true,
+  "UseAnimation": true,
+  "UseSound": true,
+  "SoundVolume": 50,
+  "ShowBadges": true,
+  "ShowBadgesGlobalOnly": false,
+  "SettingWindowFont": "Segoe UI",
+  "UseClock": true,
+  "UseDate": true,
+  "TimeFormat": "HH:mm",
+  "DateFormat": "yyyy-MM-dd",
+  "FirstLaunch": false,
+  "SettingWindowWidth": 1262.6666666666665,
+  "SettingWindowHeight": 1340,
+  "SettingWindowTop": 58,
+  "SettingWindowLeft": 1287.3333333333333,
+  "SettingWindowState": 0,
+  "ShowPlaceholder": true,
+  "PlaceholderText": "",
+  "ShowHomePage": true,
+  "ShowHistoryResultsForHomePage": true,
+  "MaxHistoryResultsToShowForHomePage": 6,
+  "AutoRestartAfterChanging": false,
+  "ShowUnknownSourceWarning": true,
+  "AutoUpdatePlugins": true,
+  "CustomExplorerIndex": 0,
+  "CustomExplorerList": [
+    {
+      "Name": "Explorer",
+      "Path": "explorer",
+      "FileArgument": "/select, \u0022%f\u0022",
+      "DirectoryArgument": "\u0022%d\u0022",
+      "Editable": false
+    },
+    {
+      "Name": "Total Commander",
+      "Path": "C:\\Program Files\\totalcmd\\TOTALCMD64.exe",
+      "FileArgument": "/O /A /S /T \u0022%f\u0022",
+      "DirectoryArgument": "/O /A /S /T \u0022%d\u0022",
+      "Editable": true
+    },
+    {
+      "Name": "Directory Opus",
+      "Path": "C:\\Program Files\\GPSoftware\\Directory Opus\\dopusrt.exe",
+      "FileArgument": "/cmd Go \u0022%f\u0022 NEW",
+      "DirectoryArgument": "/cmd Go \u0022%d\u0022 NEW",
+      "Editable": true
+    },
+    {
+      "Name": "Files",
+      "Path": "Files-Stable",
+      "FileArgument": "-select \u0022%f\u0022",
+      "DirectoryArgument": "\u0022%d\u0022",
+      "Editable": true
+    }
+  ],
+  "CustomBrowserIndex": 0,
+  "CustomBrowserList": [
+    {
+      "Name": "Default",
+      "Path": "*",
+      "PrivateArg": "",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
+    },
+    {
+      "Name": "Google Chrome",
+      "Path": "chrome",
+      "PrivateArg": "-incognito",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
+    },
+    {
+      "Name": "Mozilla Firefox",
+      "Path": "firefox",
+      "PrivateArg": "-private",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
+    },
+    {
+      "Name": "MS Edge",
+      "Path": "msedge",
+      "PrivateArg": "-inPrivate",
+      "EnablePrivate": false,
+      "OpenInTab": true,
+      "Editable": false
+    }
+  ],
+  "EnableDialogJump": true,
+  "AutoDialogJump": false,
+  "ShowDialogJumpWindow": false,
+  "DialogJumpWindowPosition": "UnderDialog",
+  "DialogJumpResultBehaviour": "LeftClick",
+  "DialogJumpFileResultBehaviour": "FullPath",
+  "LogLevel": "INFO",
+  "ShouldUsePinyin": false,
+  "UseDoublePinyin": false,
+  "DoublePinyinSchema": "XiaoHe",
+  "AlwaysPreview": false,
+  "AlwaysStartEn": false,
+  "QuerySearchPrecision": "Regular",
+  "AutoUpdates": false,
+  "WindowLeft": 726,
+  "WindowTop": 377.3333333333333,
+  "PreviousScreenWidth": 0,
+  "PreviousScreenHeight": 0,
+  "PreviousDpiX": 0,
+  "PreviousDpiY": 0,
+  "CustomWindowLeft": 0,
+  "CustomWindowTop": 0,
+  "KeepMaxResults": false,
+  "MaxResultsToShow": 7,
+  "ActivateTimes": 47,
+  "CustomPluginHotkeys": [],
+  "CustomShortcuts": [],
+  "DontPromptUpdateMsg": false,
+  "EnableUpdateLog": false,
+  "StartFlowLauncherOnSystemStartup": true,
+  "UseLogonTaskForStartup": false,
+  "HideOnStartup": true,
+  "HideNotifyIcon": false,
+  "LeaveCmdOpen": false,
+  "HideWhenDeactivated": true,
+  "ShowTaskbarWhenInvoked": false,
+  "ShowAtTopmost": false,
+  "SearchQueryResultsWithDelay": true,
+  "SearchDelayTime": 150,
+  "SearchWindowScreen": "Cursor",
+  "SearchWindowAlign": "Center",
+  "CustomScreenNumber": 1,
+  "IgnoreHotkeysOnFullscreen": false,
+  "Proxy": {
+    "Enabled": false,
+    "Server": null,
+    "Port": 0,
+    "UserName": null,
+    "Password": null
+  },
+  "LastQueryMode": "Selected",
+  "AnimationSpeed": "Medium",
+  "CustomAnimationLength": 360,
+  "PluginSettings": {
+    "PythonExecutablePath": "C:\\Users\\simsr\\AppData\\Local\\Python\\bin\\pythonw.exe",
+    "NodeExecutablePath": "C:\\Users\\simsr\\.local\\state\\fnm_multishells\\31168_1790347936793\\node.exe",
+    "Plugins": {
+      "0ECADE17459B49F587BF81DC3A125110": {
+        "ID": "0ECADE17459B49F587BF81DC3A125110",
+        "Name": "Browser Bookmarks",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "b"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "CEA0FDFC6D3B4085823D60DC76F28855": {
+        "ID": "CEA0FDFC6D3B4085823D60DC76F28855",
+        "Name": "Calculator",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "572be03c74c642baae319fc283e561a8": {
+        "ID": "572be03c74c642baae319fc283e561a8",
+        "Name": "Explorer",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "*",
+          "doc:",
+          "*",
+          "*",
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "6A122269676E40EB86EB543B945932B9": {
+        "ID": "6A122269676E40EB86EB543B945932B9",
+        "Name": "Plugin Indicator",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "?"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "9f8f9b14-2518-4907-b211-35ab6290dee7": {
+        "ID": "9f8f9b14-2518-4907-b211-35ab6290dee7",
+        "Name": "Plugins Manager",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "pm"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "b64d0a79-329a-48b0-b53f-d658318a1bf6": {
+        "ID": "b64d0a79-329a-48b0-b53f-d658318a1bf6",
+        "Name": "Process Killer",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "kill"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "791FC278BA414111B8D1886DFE447410": {
+        "ID": "791FC278BA414111B8D1886DFE447410",
+        "Name": "Program",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "D409510CD0D2481F853690A07E6DC426": {
+        "ID": "D409510CD0D2481F853690A07E6DC426",
+        "Name": "Shell",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "\u003E"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "CEA08895D2544B019B2E9C5009600DF4": {
+        "ID": "CEA08895D2544B019B2E9C5009600DF4",
+        "Name": "System Commands",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "0308FD86DE0A4DEE8D62B9B535370992": {
+        "ID": "0308FD86DE0A4DEE8D62B9B535370992",
+        "Name": "URL",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "565B73353DBF4806919830B9202EE3BF": {
+        "ID": "565B73353DBF4806919830B9202EE3BF",
+        "Name": "Web Searches",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "*",
+          "sc",
+          "wiki",
+          "findicon",
+          "maps",
+          "translate",
+          "duckduckgo",
+          "github",
+          "gist",
+          "gmail",
+          "drive",
+          "wolframalpha",
+          "stackoverflow",
+          "image",
+          "youtube",
+          "bing",
+          "yahoo",
+          "bd",
+          "lucky",
+          "twitter",
+          "facebook"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": 450,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "5043CETYU6A748679OPA02D27D99677A": {
+        "ID": "5043CETYU6A748679OPA02D27D99677A",
+        "Name": "Windows Settings",
+        "Version": "2.1.3",
+        "ActionKeywords": [
+          "s"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "2032fd77-87f3-47fa-91ab-a67982ba1253": {
+        "ID": "2032fd77-87f3-47fa-91ab-a67982ba1253",
+        "Name": "Browser History V2",
+        "Version": "1.8.0",
+        "ActionKeywords": [
+          "bh"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "10A62E71-37A5-4978-95A7-4D3F7FBD5885": {
+        "ID": "10A62E71-37A5-4978-95A7-4D3F7FBD5885",
+        "Name": "Browser Tabs",
+        "Version": "1.1.1",
+        "ActionKeywords": [
+          "t"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "9B36CE6181FC47FBB597AA2C29CD9B0A": {
+        "ID": "9B36CE6181FC47FBB597AA2C29CD9B0A",
+        "Name": "Colors",
+        "Version": "3.0.0",
+        "ActionKeywords": [
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "0F43C966617C4817B1BEC29DCC8E5A69": {
+        "ID": "0F43C966617C4817B1BEC29DCC8E5A69",
+        "Name": "Env",
+        "Version": "1.3.0",
+        "ActionKeywords": [
+          "env"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "54545DC7B3A542DBB6C7DA50DEAD455B": {
+        "ID": "54545DC7B3A542DBB6C7DA50DEAD455B",
+        "Name": "GamesLauncher",
+        "Version": "1.9.3",
+        "ActionKeywords": [
+          "gl"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "240B648F33DD4105800747A2749E1B5C": {
+        "ID": "240B648F33DD4105800747A2749E1B5C",
+        "Name": "Github Quick Launcher",
+        "Version": "5.0.0",
+        "ActionKeywords": [
+          "gr"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "1a6af486-416d-470b-86db-947fb4095588": {
+        "ID": "1a6af486-416d-470b-86db-947fb4095588",
+        "Name": "GrepFlow",
+        "Version": "1.0.1",
+        "ActionKeywords": [
+          "rg"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "3361362c-97e0-46f3-9461-31d24975f0a9": {
+        "ID": "3361362c-97e0-46f3-9461-31d24975f0a9",
+        "Name": "MapPaste",
+        "Version": "0.1.4",
+        "ActionKeywords": [
+          "mp"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "3C62514E3C8644D583E3F12202F11161": {
+        "ID": "3C62514E3C8644D583E3F12202F11161",
+        "Name": "nexusmods-search",
+        "Version": "0.2.3",
+        "ActionKeywords": [
+          "nx"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "028C97F910684231AB09B5DD5997D424": {
+        "ID": "028C97F910684231AB09B5DD5997D424",
+        "Name": "Obsidian",
+        "Version": "1.1.1",
+        "ActionKeywords": [
+          "ob"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "8533B2E5632A449F916D3658EABFB595": {
+        "ID": "8533B2E5632A449F916D3658EABFB595",
+        "Name": "Registry",
+        "Version": "1.0.0",
+        "ActionKeywords": [
+          "reg"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "4D5DF575E4964C6AAADCF86134F09CC0": {
+        "ID": "4D5DF575E4964C6AAADCF86134F09CC0",
+        "Name": "Steam Search",
+        "Version": "12.1.4",
+        "ActionKeywords": [
+          "st"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "d13e69b5-048a-4dce-a950-cbdd5f61f3be": {
+        "ID": "d13e69b5-048a-4dce-a950-cbdd5f61f3be",
+        "Name": "Window Manager",
+        "Version": "2.0.3",
+        "ActionKeywords": [
+          "wm"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "F737A9223560B3C6833B5FFB8CDF78E5": {
+        "ID": "F737A9223560B3C6833B5FFB8CDF78E5",
+        "Name": "Window Walker",
+        "Version": "3.1.0",
+        "ActionKeywords": [
+          "*"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "42f63e8d-3d3d-4b4b-9e91-c6094bf240ec": {
+        "ID": "42f63e8d-3d3d-4b4b-9e91-c6094bf240ec",
+        "Name": "Windows Services Manager",
+        "Version": "1.1.1",
+        "ActionKeywords": [
+          "svc"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "91a89d52b8bd4a1ebfde9d09b7b5803b": {
+        "ID": "91a89d52b8bd4a1ebfde9d09b7b5803b",
+        "Name": "Zed Workspaces",
+        "Version": "1.7",
+        "ActionKeywords": [
+          "z"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "EC779402-4FF2-496D-862E-C2A14E1767C8": {
+        "ID": "EC779402-4FF2-496D-862E-C2A14E1767C8",
+        "Name": "Zoxide",
+        "Version": "1.5.3",
+        "ActionKeywords": [
+          "cd"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "42DE0794627A48B2847E6FDF29DD5561": {
+        "ID": "42DE0794627A48B2847E6FDF29DD5561",
+        "Name": "FlowYouTube",
+        "Version": "2.1.0",
+        "ActionKeywords": [
+          "yt"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      }
+    }
+  }
+}
