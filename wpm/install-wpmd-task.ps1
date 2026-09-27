@@ -1,6 +1,6 @@
 # Registers a scheduled task that starts wpmd at logon.
 #
-# wpmd runs as the current user, NOT elevated: the watchdog relaunches yasb,
+# wpmd runs as the current user, NOT elevated: the watchdogs relaunch apps,
 # and an elevated yasb would break drag/drop and input with normal windows.
 # conhost --headless keeps wpmd's console window hidden.
 #
@@ -28,7 +28,7 @@ $settings  = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGo
     -ExecutionTimeLimit ([TimeSpan]::Zero) -MultipleInstances IgnoreNew
 
 Register-ScheduledTask -TaskName 'wpmd' -Force `
-    -Description 'wpm process manager (supervises yasb-watchdog)' `
+    -Description 'wpm process manager (supervises the desktop app watchdogs)' `
     -Action $action -Trigger $trigger -Principal $principal -Settings $settings |
     Select-Object TaskName, State
 

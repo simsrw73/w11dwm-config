@@ -1,10 +1,8 @@
 # wpm unit: keep yasb running and responsive.
 #
-# wpm supervises the watchdog script; the watchdog supervises yasb.
-# See README.md in this directory for why yasb isn't run by wpm directly.
-#
-# Install: copy this file and yasb-watchdog.ps1 into `wpmctl units`
-# (usually ~/.config/wpm), then `wpmctl reload` and `wpmctl start yasb-watchdog`.
+# wpm supervises watchdog.ps1; the watchdog supervises yasb by process name
+# and restarts it if its bar windows stop responding. See README.md for why
+# yasb isn't run by wpm directly.
 
 [Unit]
 Name = "yasb-watchdog"
@@ -25,13 +23,14 @@ Arguments = [
     "-ExecutionPolicy",
     "Bypass",
     "-File",
-    "$USERPROFILE/.config/wpm/yasb-watchdog.ps1",
-    # Optional overrides (defaults shown):
-    # "-IntervalSec", "10",
-    # "-MissingGraceSec", "20",
-    # "-StartupGraceSec", "45",
-    # "-HangChecks", "3",
-    # "-YasbExe", "C:/Program Files/YASB/yasb.exe",
+    "$USERPROFILE/.config/wpm/watchdog.ps1",
+    "-Name", "yasb",
+    "-ProcessName", "yasb",
+    "-Exe", "C:/Program Files/YASB/yasb.exe",
+    "-IntervalSec", "10",
+    "-MissingGraceSec", "20",
+    "-HangChecks", "3",
+    "-StartupGraceSec", "45",
 ]
 
 [Service.Healthcheck.Process]

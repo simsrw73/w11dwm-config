@@ -1,6 +1,6 @@
 # wpm unit: keep Flow Launcher running across its own restarts and updates.
 #
-# wpm supervises the generic app watchdog; the watchdog supervises Flow
+# wpm supervises watchdog.ps1; the watchdog supervises Flow
 # Launcher by process name. Flow replaces its process on "Restart Flow
 # Launcher", plugin installs and updates, which wpm's PID tracking can't
 # follow. It is launched through the Squirrel stub so version upgrades
@@ -25,7 +25,7 @@ Arguments = [
     "-ExecutionPolicy",
     "Bypass",
     "-File",
-    "$USERPROFILE/.config/wpm/app-watchdog.ps1",
+    "$USERPROFILE/.config/wpm/watchdog.ps1",
     "-Name", "flowlauncher",
     "-ProcessName", "Flow.Launcher",
     "-Exe", "$USERPROFILE/AppData/Local/FlowLauncher/Flow.Launcher.exe",

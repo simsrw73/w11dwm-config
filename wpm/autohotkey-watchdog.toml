@@ -1,7 +1,10 @@
 # wpm unit: keep the primary AutoHotkey script running across reloads.
 #
-# wpm supervises this watchdog; the watchdog supervises AutoHotkey by its
-# script window title rather than PID. See README.md for why this indirection matters.
+# wpm supervises watchdog.ps1; the watchdog finds the script by its hidden
+# AutoHotkey window ("<script path> - AutoHotkey v2.x"), not by PID or
+# command line: the UIA build's command line is unreadable to a
+# non-elevated watchdog. Keep the script path in backslash form so it
+# matches the window title.
 
 [Unit]
 Name = "autohotkey-watchdog"
@@ -22,12 +25,14 @@ Arguments = [
     "-ExecutionPolicy",
     "Bypass",
     "-File",
-    "$USERPROFILE/.config/wpm/autohotkey-watchdog.ps1",
-    # Optional overrides (defaults shown):
-    # "-IntervalSec", "5",
-    # "-MissingGraceSec", "5",
-    # "-AutoHotkeyExe", "C:/Program Files/AutoHotkey/v2/AutoHotkey64_UIA.exe",
-    # "-ScriptPath", "C:/Users/simsr/.config/autohotkey/autohotkey.ahk",
+    "$USERPROFILE/.config/wpm/watchdog.ps1",
+    "-Name", "autohotkey",
+    "-ProcessName", "AutoHotkey64_UIA",
+    "-Exe", "C:/Program Files/AutoHotkey/v2/AutoHotkey64_UIA.exe",
+    "-ArgumentList", "$USERPROFILE\\.config\\autohotkey\\autohotkey.ahk",
+    "-WorkingDirectory", "$USERPROFILE\\.config\\autohotkey",
+    "-WindowClass", "AutoHotkey",
+    "-WindowTitlePrefix", "$USERPROFILE\\.config\\autohotkey\\autohotkey.ahk - AutoHotkey",
 ]
 
 [Service.Healthcheck.Process]
