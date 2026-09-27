@@ -10,7 +10,7 @@ custom status bar and a launcher, themed with Catppuccin Mocha throughout.
 | [AutoHotkey v2](https://www.autohotkey.com/) | All key bindings (replaces whkd), plus a which-key-style app launcher | [`autohotkey/`](autohotkey) | `~/.config/AutoHotKey` |
 | [yasb](https://github.com/amnweb/yasb) | Status bar (replaces komorebi-bar) | [`yasb/`](yasb) | `~/.config/yasb` |
 | [Flow Launcher](https://www.flowlauncher.com/) | Search and launcher (`Ctrl + ~`) | [`flowlauncher/`](flowlauncher) | `%APPDATA%\FlowLauncher` → `~/.config/FlowLauncher` |
-| [wpm](https://github.com/LGUG2Z/wpm) | Process manager. Runs a watchdog that keeps yasb alive | [`wpm/`](wpm) | `~/.config/wpm` |
+| [wpm](https://github.com/LGUG2Z/wpm) | Process manager. Runs watchdogs that keep yasb, AutoHotkey and Flow Launcher alive | [`wpm/`](wpm) | `~/.config/wpm` |
 
 How it all starts at logon (scheduled tasks, elevation, environment): see [`startup/`](startup).
 
@@ -31,9 +31,10 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
   `autohotkey/Apps.ahk`.
 - **Bar:** yasb reads komorebi's state for its workspace and layout widgets. It has a full
   bar on the primary monitor and a slim one on the others.
-- **Watchdog:** wpm supervises `yasb-watchdog.ps1`, which restarts yasb if it
-  dies or hangs. [`wpm/README.md`](wpm/README.md) explains why wpm doesn't supervise
-  yasb directly.
+- **Watchdogs:** wpm supervises `yasb-watchdog.ps1`, which restarts yasb if it
+  dies or hangs, `autohotkey-watchdog.ps1` for the main AutoHotkey script, and the
+  generic `app-watchdog.ps1` for Flow Launcher. [`wpm/README.md`](wpm/README.md)
+  explains why wpm doesn't supervise these apps directly.
 
 ## About this repo
 

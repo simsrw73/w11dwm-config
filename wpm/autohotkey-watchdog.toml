@@ -1,0 +1,34 @@
+# wpm unit: keep the primary AutoHotkey script running across reloads.
+#
+# wpm supervises this watchdog; the watchdog supervises AutoHotkey by its
+# script window title rather than PID. See README.md for why this indirection matters.
+
+[Unit]
+Name = "autohotkey-watchdog"
+Description = "Keeps the primary AutoHotkey script running across reloads"
+
+[Service]
+Kind = "Simple"
+Autostart = true
+Restart = "Always"
+RestartSec = 5
+
+[Service.ExecStart]
+Executable = "powershell.exe"
+Arguments = [
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "$USERPROFILE/.config/wpm/autohotkey-watchdog.ps1",
+    # Optional overrides (defaults shown):
+    # "-IntervalSec", "5",
+    # "-MissingGraceSec", "5",
+    # "-AutoHotkeyExe", "C:/Program Files/AutoHotkey/v2/AutoHotkey64_UIA.exe",
+    # "-ScriptPath", "C:/Users/simsr/.config/autohotkey/autohotkey.ahk",
+]
+
+[Service.Healthcheck.Process]
+DelaySec = 2
