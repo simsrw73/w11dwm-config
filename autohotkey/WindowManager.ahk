@@ -57,3 +57,40 @@ MoveToWorkspaceHotkey(workspace) => (*) => Komorebi.MoveToWorkspace(workspace)
 !+r::Komorebi.Run("retile")
 !+o::Komorebi.Run("reload-configuration")
 !p::Komorebi.Run("toggle-pause")
+
+; Windows Hello / credential prompts (CredentialUIBroker) often open behind the active
+; window because the app that asked for them isn't in the foreground. komorebi ignores
+; them (applications.json), so raise them here like the other popups. The app that asked
+; for the prompt (Bitwarden, always-on-top) keeps pulling focus back while it waits, so a
+; one-shot raise loses: hold the prompt on top and focused for as long as it is open.
+class SecurityPrompts {
+    ; Match on class only: the "Windows Security" title isn't set yet when the window is created.
+    static Criteria := "ahk_class Credential Dialog Xaml Host"
+    static Last := 0
+
+    static Watch() {
+        SetTimer(ObjBindMethod(this, "Hold"), 250)
+    }
+
+    static Hold() {
+        static WS_EX_TOPMOST := 0x8
+        if !(hwnd := WinExist(this.Criteria)) {
+            this.Last := 0
+            return
+        }
+        target := "ahk_id " hwnd
+        try {
+            if hwnd != this.Last {           ; new prompt: center it on the monitor in use
+                this.Last := hwnd
+                WindowLauncher.Activate(hwnd, WindowLauncher.ActiveMonitorWorkArea())
+                return
+            }
+            if !(WinGetExStyle(target) & WS_EX_TOPMOST)
+                WinSetAlwaysOnTop(1, target)
+            if !WinActive(target)
+                WinActivate(target)
+        } catch TargetError                  ; the prompt closed under us
+            return
+    }
+}
+SecurityPrompts.Watch()

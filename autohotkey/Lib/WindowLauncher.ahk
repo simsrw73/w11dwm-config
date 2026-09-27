@@ -68,8 +68,40 @@ class WindowLauncher {
         if popupArea {
             WinSetAlwaysOnTop(1, target)
             this.CenterIn(target, popupArea)
+            this.DropWhenInactive(hwnd)
         }
         WinActivate(target)
+    }
+
+    ; Popups stay on top only while in use. Once another window takes focus (a file Koffee
+    ; opened, a click elsewhere), drop the popup's always-on-top and tuck it just behind
+    ; that window so it doesn't cover what you switched to.
+    static Popups := Map()
+
+    static DropWhenInactive(hwnd) {
+        static timer := ObjBindMethod(WindowLauncher, "DropInactivePopups")
+        this.Popups[hwnd] := true
+        SetTimer(timer, 250)
+    }
+
+    static DropInactivePopups() {
+        static HWND_NOTOPMOST := -2, SWP_NOSIZE := 0x1, SWP_NOMOVE := 0x2, SWP_NOACTIVATE := 0x10
+        active := WinExist("A")
+        for hwnd in [this.Popups*] {
+            if !WinExist("ahk_id " hwnd) {
+                this.Popups.Delete(hwnd)
+                continue
+            }
+            if hwnd = active
+                continue
+            flags := SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE
+            DllCall("SetWindowPos", "Ptr", hwnd, "Ptr", HWND_NOTOPMOST, "Int", 0, "Int", 0, "Int", 0, "Int", 0, "UInt", flags)
+            if active
+                DllCall("SetWindowPos", "Ptr", hwnd, "Ptr", active, "Int", 0, "Int", 0, "Int", 0, "Int", 0, "UInt", flags)
+            this.Popups.Delete(hwnd)
+        }
+        if !this.Popups.Count
+            SetTimer(, 0)
     }
 
     static IsCloaked(hwnd) {
