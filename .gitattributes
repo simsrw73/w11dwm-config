@@ -1,0 +1,4 @@
+# Everything is stored and checked out with LF, whatever core.autocrlf says.
+# sync.ps1 writes its copies with LF too, so they always match a checkout.
+* text=auto eol=lf
+*.png binary
