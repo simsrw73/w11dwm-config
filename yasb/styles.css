@@ -156,17 +156,31 @@
 }
 
 /* Stack: only visible when the focused container is a stack */
+.komorebi-stack .widget-container {
+    border-left: 1px solid rgba(var(--overlay0-rgb), 0.35);
+    border-right: 1px solid rgba(var(--overlay0-rgb), 0.35);
+    padding: 0 6px;
+    margin: 3px 6px;
+}
+/* Active window is an underline, not a fill, so it can't be confused with the
+   active workspace. Every window reserves the 2px so the bar doesn't shift. */
 .komorebi-stack .window {
     padding: 0 6px;
     margin: 0 1px;
     border-radius: var(--radius-item);
+    border-bottom: 2px solid transparent;
 }
 .komorebi-stack .window .label {
     font-size: 12px;
     color: var(--overlay1);
 }
+.komorebi-stack .window:hover {
+    background-color: rgba(var(--surface1-rgb), 0.6);
+}
 .komorebi-stack .window.active {
-    background-color: rgba(var(--surface1-rgb), 0.5);
+    border-bottom: 2px solid var(--text);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .komorebi-stack .window.active .label {
     color: var(--text);

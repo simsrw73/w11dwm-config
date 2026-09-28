@@ -179,7 +179,7 @@ widgets:
   komorebi_control:
     type: "komorebi.control.KomorebiControlWidget"
     options:
-      label: "<span>\U000F11D9</span>"
+      label: "<span>\U000F066A</span>"
       icons:
         start: "\uead3"
         stop: "\uead7"
