@@ -3,60 +3,67 @@
 ; komorebi keys, following komorebi's sample whkdrc. Alt is the window-manager modifier.
 ; Workspaces are numbered across both monitors in komorebi.json order:
 ;   4K: 1 dev · 2 notes · 3 ai-lab · 4 admin      LG: 5 research · 6 comms · 7 files · 8 games · 9 scratch
+; Every key registers through Legend, so Alt+/ lists it on the komorebi page.
+
+komorebiKeys := Legend.Page("komorebi")  ; not "komorebi": names are case-insensitive and Komorebi is a class
 
 BindWorkspaceHotkeys(["dev", "notes", "ai-lab", "admin", "research", "comms", "files", "games", "scratch"])
 
 BindWorkspaceHotkeys(workspaces) {
     for i, workspace in workspaces {
-        Hotkey("!" i, FocusWorkspaceHotkey(workspace))
-        Hotkey("!+" i, MoveToWorkspaceHotkey(workspace))
+        Legend.Bind(["komorebi", "Workspaces", "Focus"], "!" i, i " " workspace, FocusWorkspaceHotkey(workspace))
+        Legend.Bind(["komorebi", "Workspaces", "Move window"], "!+" i, "to " i " " workspace, MoveToWorkspaceHotkey(workspace))
     }
 }
 FocusWorkspaceHotkey(workspace) => (*) => Komorebi.FocusWorkspace(workspace)
 MoveToWorkspaceHotkey(workspace) => (*) => Komorebi.MoveToWorkspace(workspace)
 
-!+0::Komorebi.MoveToWorkspace("scratch")
+komorebiKeys.Category("Workspaces", [
+    ["!+0", "to scratch", (*) => Komorebi.MoveToWorkspace("scratch")]
+], "Move window")
 
-; Focus / move / stack
-!h::Komorebi.Run("focus", "left")
-!j::Komorebi.Run("focus", "down")
-!k::Komorebi.Run("focus", "up")
-!l::Komorebi.Run("focus", "right")
+komorebiKeys.Category("Focus / move / stack", [
+    ["!h", "focus left", (*) => Komorebi.Run("focus", "left"), {Row: "Alt+H/J/K/L", Text: "focus ← ↓ ↑ →"}],
+    ["!j", "focus down", (*) => Komorebi.Run("focus", "down"), {Row: "Alt+H/J/K/L"}],
+    ["!k", "focus up", (*) => Komorebi.Run("focus", "up"), {Row: "Alt+H/J/K/L"}],
+    ["!l", "focus right", (*) => Komorebi.Run("focus", "right"), {Row: "Alt+H/J/K/L"}],
+    ["!+h", "move left", (*) => Komorebi.Run("move", "left"), {Row: "Alt+Shift+H/J/K/L", Text: "move window ← ↓ ↑ →"}],
+    ["!+j", "move down", (*) => Komorebi.Run("move", "down"), {Row: "Alt+Shift+H/J/K/L"}],
+    ["!+k", "move up", (*) => Komorebi.Run("move", "up"), {Row: "Alt+Shift+H/J/K/L"}],
+    ["!+l", "move right", (*) => Komorebi.Run("move", "right"), {Row: "Alt+Shift+H/J/K/L"}],
+    ["!+Enter", "promote to main", (*) => Komorebi.Run("promote")],
+    ["!^h", "stack left", (*) => Komorebi.Run("stack", "left"), {Row: "Ctrl+Alt+H/J/K/L", Text: "stack onto ← ↓ ↑ →"}],
+    ["!^j", "stack down", (*) => Komorebi.Run("stack", "down"), {Row: "Ctrl+Alt+H/J/K/L"}],
+    ["!^k", "stack up", (*) => Komorebi.Run("stack", "up"), {Row: "Ctrl+Alt+H/J/K/L"}],
+    ["!^l", "stack right", (*) => Komorebi.Run("stack", "right"), {Row: "Ctrl+Alt+H/J/K/L"}],
+    ["!;", "unstack", (*) => Komorebi.Run("unstack")],
+    ["![", "previous in stack", (*) => Komorebi.Run("cycle-stack", "previous"), {Row: "Alt+[ / ]", Text: "previous / next in stack"}],
+    ["!]", "next in stack", (*) => Komorebi.Run("cycle-stack", "next"), {Row: "Alt+[ / ]"}]
+])
 
-!+h::Komorebi.Run("move", "left")
-!+j::Komorebi.Run("move", "down")
-!+k::Komorebi.Run("move", "up")
-!+l::Komorebi.Run("move", "right")
-!+Enter::Komorebi.Run("promote")
+komorebiKeys.Category("Resize", [
+    ["!=", "wider", (*) => Komorebi.Run("resize-axis", "horizontal", "increase"), {Row: "Alt+= / -", Text: "wider / narrower"}],
+    ["!-", "narrower", (*) => Komorebi.Run("resize-axis", "horizontal", "decrease"), {Row: "Alt+= / -"}],
+    ["!+=", "taller", (*) => Komorebi.Run("resize-axis", "vertical", "increase"), {Row: "Alt+Shift+= / -", Text: "taller / shorter"}],
+    ["!+-", "shorter", (*) => Komorebi.Run("resize-axis", "vertical", "decrease"), {Row: "Alt+Shift+= / -"}]
+])
 
-!^h::Komorebi.Run("stack", "left")
-!^j::Komorebi.Run("stack", "down")
-!^k::Komorebi.Run("stack", "up")
-!^l::Komorebi.Run("stack", "right")
-!`;::Komorebi.Run("unstack")
-![::Komorebi.Run("cycle-stack", "previous")
-!]::Komorebi.Run("cycle-stack", "next")
+komorebiKeys.Category("Window state", [
+    ["!q", "close window", (*) => Komorebi.Run("close")],
+    ["!t", "toggle float", (*) => Komorebi.Run("toggle-float")],
+    ["!+f", "toggle monocle", (*) => Komorebi.Run("toggle-monocle")],
+    ["!+Space", "next layout", (*) => Komorebi.Run("cycle-layout", "next")],
+    ["!x", "flip horizontal", (*) => Komorebi.Run("flip-layout", "horizontal"), {Row: "Alt+X / Y", Text: "flip horizontal / vertical"}],
+    ["!y", "flip vertical", (*) => Komorebi.Run("flip-layout", "vertical"), {Row: "Alt+X / Y"}]
+])
 
-; Resize
-!=::Komorebi.Run("resize-axis", "horizontal", "increase")
-!-::Komorebi.Run("resize-axis", "horizontal", "decrease")
-!+=::Komorebi.Run("resize-axis", "vertical", "increase")
-!+-::Komorebi.Run("resize-axis", "vertical", "decrease")
-
-; Window state
-!q::Komorebi.Run("close")
-!t::Komorebi.Run("toggle-float")
-!+f::Komorebi.Run("toggle-monocle")
-!+Space::Komorebi.Run("cycle-layout", "next")
-!x::Komorebi.Run("flip-layout", "horizontal")
-!y::Komorebi.Run("flip-layout", "vertical")
-
-; Monitors and manager
-!+s::Komorebi.SwapWorkspaceWithOtherMonitor()
-!+w::Komorebi.Run("cycle-move-to-monitor", "next")
-!+r::Komorebi.Run("retile")
-!+o::Komorebi.Run("reload-configuration")
-!p::Komorebi.Run("toggle-pause")
+komorebiKeys.Category("Monitors & manager", [
+    ["!+s", "swap workspace with other monitor", (*) => Komorebi.SwapWorkspaceWithOtherMonitor()],
+    ["!+w", "move window to next monitor", (*) => Komorebi.Run("cycle-move-to-monitor", "next")],
+    ["!+r", "retile", (*) => Komorebi.Run("retile")],
+    ["!+o", "reload komorebi config", (*) => Komorebi.Run("reload-configuration")],
+    ["!p", "pause komorebi", (*) => Komorebi.Run("toggle-pause")]
+])
 
 ; Windows Hello / credential prompts (CredentialUIBroker) often open behind the active
 ; window because the app that asked for them isn't in the foreground. komorebi ignores

@@ -1,7 +1,9 @@
 #Requires AutoHotkey v2.0
 
-^!#r::Reload()
-^!#q::ExitApp()
+Legend.Page("AutoHotkey").Category("Script", [
+    ["^!#r", "reload AutoHotkey", (*) => Reload()],
+    ["^!#q", "exit AutoHotkey", (*) => ExitApp()]
+])
 
 ; App launching lives in Chords.ahk (Win+Space).
 
@@ -10,12 +12,10 @@ localAppDataDir := EnvGet("LocalAppData")
 chromePath := "C:\Program Files\Google\Chrome\Application\chrome.exe"
 cleanProfileDir := localAppDataDir "\Google\Chrome\AHK-CleanProfile"
 
-zenWin := "ahk_exe zen.exe"
-
-; Meta + Shift + O: Open current Zen tab in Chrome
-#HotIf WinActive(zenWin)
-#+o::OpenCurrentZenTabInChrome()
-#HotIf
+; The match here (not only in legend/pages/zen.md) keeps Win+Shift+O Zen-only.
+Legend.Page("Zen", "ahk_exe zen.exe").Category("Tabs", [
+    ["#+o", "open current tab in Chrome", (*) => OpenCurrentZenTabInChrome()]
+])
 
 OpenCurrentZenTabInChrome() {
     global chromePath, cleanProfileDir
