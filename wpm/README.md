@@ -97,8 +97,14 @@ task that runs elevated and has no trigger. The unit starts it with
 `schtasks /Run /TN komorebi` (no UAC prompt), uses `Kind = "Forking"` and a
 `Target = "komorebi.exe"` healthcheck to adopt the elevated process by name,
 and stops it with `komorebic stop` (wpm can't kill an elevated process
-itself). `Restart = "OnFailure"` brings it back after a crash, but not after
-a deliberate `komorebic stop`.
+itself). `Restart = "OnFailure"` brings it back after a crash or a forced
+kill (exit code -1), but not after a deliberate `komorebic stop` (exit 0).
+
+On a cold boot komorebi can take 10s or more to appear. `RetryLimit = 20` on
+`ExecStart` gives it about 40s (20 checks, 2s apart) before wpm gives up;
+re-running the task while it's still starting does nothing. Without it, wpm
+gave up after about 10s, and yasb, which requires komorebi, was never
+started.
 
 `komorebic fetch-asc` isn't run at startup: it's a blocking network call at
 logon. Run it by hand when you want to update `applications.json`.

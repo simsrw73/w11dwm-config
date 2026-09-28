@@ -26,6 +26,9 @@ Environment = [[
 [Service.ExecStart]
 Executable = "schtasks.exe"
 Arguments = ["/Run", "/TN", "komorebi"]
+# Attempts, each checked after the healthcheck delay: a cold boot can take
+# 10s+ before komorebi.exe appears. Re-running a running task is a no-op.
+RetryLimit = 20
 
 [[Service.ExecStop]]
 Executable = "komorebic.exe"
