@@ -26,15 +26,15 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
   `Alt+Shift+1..9` to move a window to a workspace, …). It calls `komorebic` through the small wrapper
   in `autohotkey/Lib/Komorebi.ahk`.
 - **App chords:** `Win+Space` opens a which-key style menu (`autohotkey/Chords.ahk`, built on
-  [KeyChord](https://github.com/tylerjcw/KeyChord)). Pressing a key focuses that app, or launches it if it isn't running, and
+  [Legend](https://github.com/simsrw73/Legend.ahk)'s chord mode). Pressing a key focuses that app, or launches it if it isn't running, and
   komorebi's rules take care of which workspace it lands on. Apps are defined once in
   `autohotkey/Apps.ahk`.
 - **Bar:** yasb reads komorebi's state for its workspace and layout widgets. It has a full
   bar on the primary monitor and a slim one on the others.
-- **Watchdogs:** wpm supervises `yasb-watchdog.ps1`, which restarts yasb if it
-  dies or hangs, `autohotkey-watchdog.ps1` for the main AutoHotkey script, and the
-  generic `app-watchdog.ps1` for Flow Launcher. [`wpm/README.md`](wpm/README.md)
-  explains why wpm doesn't supervise these apps directly.
+- **Startup and supervision:** wpm starts the desktop at logon. It runs komorebi elevated
+  through a scheduled task, and runs yasb, the main AutoHotkey script and Flow Launcher
+  through `wpm/watchdog.ps1`, which restarts them if they exit (and yasb if it hangs).
+  [`wpm/README.md`](wpm/README.md) explains why.
 
 ## About this repo
 
@@ -52,5 +52,6 @@ them for your own machine.
 
 ## License
 
-[MIT](LICENSE) covers my files. `autohotkey/Lib/KeyChord` is a submodule pointing to
-[tylerjcw/KeyChord](https://github.com/tylerjcw/KeyChord) and isn't covered by this license.
+[MIT](LICENSE) covers my files. `autohotkey/Lib/Legend` is a submodule pointing to
+[simsrw73/Legend.ahk](https://github.com/simsrw73/Legend.ahk), which has its own MIT license.
+Clone with `git clone --recurse-submodules`, or run `git submodule update --init` after cloning.

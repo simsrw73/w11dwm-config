@@ -9,7 +9,7 @@ listed here. Tool folders are mirrored: files removed at the source are removed
 here too. After copying, it scans for anything that looks like a secret and
 fails if it finds one.
 
-autohotkey/Lib/KeyChord is a git submodule and isn't touched.
+autohotkey/Lib/Legend is a git submodule and isn't touched.
 #>
 [CmdletBinding()]
 param(
@@ -30,7 +30,7 @@ $Map = [ordered]@{
 }
 
 # Keep these untouched when mirroring (not copied from the source)
-$Preserve = 'autohotkey/Lib/KeyChord/*', 'flowlauncher/plugins.md'
+$Preserve = 'autohotkey/Lib/Legend/*', 'flowlauncher/plugins.md'
 
 # Flow Launcher rewrites these values as it runs; pin them in the copy
 # (the same pins as lib/flow-state.sed in the dotfiles repo).
@@ -104,7 +104,7 @@ $lines = @('# Flow Launcher plugins', '', 'Third-party plugins installed (genera
 # Secret scan over everything that was synced
 $pattern = '(?i)(token|api[_-]?key|secret|password|bearer)\s*["'']?\s*[:=]\s*["'']?[A-Za-z0-9_\-\.]{8,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9]{20,}'
 $hits = Get-ChildItem ($Map.Keys | ForEach-Object { Join-Path $Repo $_ }) -Recurse -File -Exclude *.png |
-    Where-Object FullName -notmatch '\\KeyChord\\' | Select-String -Pattern $pattern
+    Where-Object FullName -notmatch '\\Legend\\' | Select-String -Pattern $pattern
 if ($hits) {
     $hits | ForEach-Object { Write-Warning ("{0}:{1}: {2}" -f $_.Path, $_.LineNumber, $_.Line.Trim()) }
     throw "Possible secrets found. Fix the source or the allowlist before committing."
