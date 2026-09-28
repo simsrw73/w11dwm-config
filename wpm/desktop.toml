@@ -1,0 +1,22 @@
+# wpm unit: start the whole desktop by hand (`wpmctl start desktop`).
+#
+# Not autostarted: each unit autostarts on its own, so one failing unit
+# can't keep the others from starting.
+
+[Unit]
+Name = "desktop"
+Description = "Set up a sensible desktop environment for Windows 11."
+Requires = [
+    "komorebi",
+    "yasb",
+    "autohotkey",
+    "flowlauncher"
+]
+
+[Service]
+Kind = "Oneshot"
+Restart = "Never"
+
+[Service.ExecStart]
+Executable = "cmd.exe"
+Arguments = ["/c", "exit", "0"]

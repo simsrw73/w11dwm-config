@@ -1,19 +1,22 @@
-# wpm watchdogs
+# wpm desktop
 
-[wpm](https://github.com/LGUG2Z/wpm) units that keep long-running Windows
-desktop apps alive, including apps that replace their own process when they
-reload, restart or update.
+[wpm](https://github.com/LGUG2Z/wpm) units that start the Windows desktop
+(komorebi, yasb, AutoHotkey, Flow Launcher) at logon and keep it alive,
+including apps that replace their own process when they reload, restart or
+update.
 
 | File | Purpose |
 | --- | --- |
 | `watchdog.ps1` | The one watchdog script every unit runs. |
-| `yasb-watchdog.toml` | yasb: restart if it exits or its bar windows hang. |
-| `autohotkey-watchdog.toml` | The primary AutoHotkey script (UIA build). |
-| `flowlauncher-watchdog.toml` | Flow Launcher. |
-| `install-wpmd-task.ps1` | Scheduled task that starts `wpmd` at logon. |
+| `komorebi.toml` | komorebi, elevated, through the `komorebi` scheduled task. |
+| `yasb.toml` | yasb: restart if it exits or its bar windows hang. Requires komorebi. |
+| `autohotkey.toml` | The primary AutoHotkey script (UIA build). |
+| `flowlauncher.toml` | Flow Launcher. |
+| `desktop.toml` | Starts all of the above by hand: `wpmctl start desktop`. |
+| `install-tasks.ps1` | Scheduled tasks: `wpmd` at logon, and the elevated `komorebi` task. |
 | `tests/Watchdog.Tests.ps1` | Pester tests: `Invoke-Pester tests/Watchdog.Tests.ps1`. |
 
-## Why wpm doesn't run these apps directly
+## Why wpm doesn't run yasb, AutoHotkey and Flow Launcher directly
 
 Two things in wpm's source (`wpm/src/unit.rs`) rule out a plain unit per app:
 
@@ -85,6 +88,28 @@ stay **off** (`StartFlowLauncherOnSystemStartup: false` in its
 To supervise another app, copy a `.toml` and change the unit `Name`,
 `-Name`, `-ProcessName` and `-Exe`.
 
+**komorebi** is the exception: it keeps its PID and reloads its config in
+place, so wpm tracks it directly, with no watchdog. It has to run elevated
+to manage admin windows, but wpmd isn't elevated, and running wpmd elevated
+would elevate yasb, AutoHotkey and Flow Launcher too (everything launched
+from Flow would run as admin). So `install-tasks.ps1` registers a `komorebi`
+task that runs elevated and has no trigger. The unit starts it with
+`schtasks /Run /TN komorebi` (no UAC prompt), uses `Kind = "Forking"` and a
+`Target = "komorebi.exe"` healthcheck to adopt the elevated process by name,
+and stops it with `komorebic stop` (wpm can't kill an elevated process
+itself). `Restart = "OnFailure"` brings it back after a crash, but not after
+a deliberate `komorebic stop`.
+
+`komorebic fetch-asc` isn't run at startup: it's a blocking network call at
+logon. Run it by hand when you want to update `applications.json`.
+
+## Startup order
+
+Every unit except `desktop` has `Autostart = true`, so one unit failing its
+healthcheck can't stop the others from starting (wpm stops starting a unit
+at its first failed dependency). `Requires` still sets the order:
+autohotkey, then komorebi, then yasb. Flow Launcher is independent.
+
 ## Stopping an app on purpose
 
 Reloads and quick restarts are safe with the watchdog running. To keep an
@@ -101,7 +126,8 @@ Remove-Item "$env:LOCALAPPDATA\wpm\yasb-watchdog.pause"
 
 Use `autohotkey-watchdog.pause` or `flowlauncher-watchdog.pause` for the
 others. `wpmctl stop <unit>` also works, but note that this wpm build
-restarts `Restart = "Always"` units after an explicit stop.
+restarts `Restart = "Always"` units after an explicit stop. komorebi has no
+watchdog: `wpmctl stop komorebi` or `komorebic stop` keeps it stopped.
 
 ## Install
 
@@ -110,13 +136,21 @@ restarts `Restart = "Always"` units after an explicit stop.
 
 ```powershell
 wpmctl reload
-wpmctl start yasb-watchdog      # likewise autohotkey-watchdog, flowlauncher-watchdog
-wpmctl log yasb-watchdog        # watch what it's doing
+wpmctl start desktop     # or one unit: komorebi, yasb, autohotkey, flowlauncher
+wpmctl log yasb          # watch what it's doing
 ```
 
-`Autostart = true` starts each watchdog when `wpmd` starts, but wpm
-doesn't start `wpmd` at login. `install-wpmd-task.ps1` registers a
-scheduled task named `wpmd` that runs it at logon, hidden and not elevated
-(`-Start` also launches it now). Remove any other autostart entries
-(Startup folder shortcuts, the apps' own "start at logon" settings) for
-apps the watchdogs manage.
+`Autostart = true` starts each unit when `wpmd` starts, but wpm doesn't
+start `wpmd` at login. Run `install-tasks.ps1` from an elevated shell (`-Start`
+also launches wpmd now). It registers:
+
+- `wpmd`: runs at logon, hidden and **not** elevated.
+- `komorebi`: elevated, with no trigger; only the komorebi unit starts it.
+
+Both tasks run at priority 4. Task Scheduler's default of 7 runs the task,
+and every process it starts, at BelowNormal priority, which slows logon and
+leaves yasb and Flow Launcher less responsive.
+
+Remove any other autostart entries (Startup folder shortcuts, the apps' own
+"start at logon" settings, komorebi's own logon task) for apps these units
+manage.

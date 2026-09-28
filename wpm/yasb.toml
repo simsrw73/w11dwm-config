@@ -5,8 +5,11 @@
 # yasb isn't run by wpm directly.
 
 [Unit]
-Name = "yasb-watchdog"
+Name = "yasb"
 Description = "Restarts yasb if it exits or its bar windows stop responding"
+Requires = [
+    "komorebi"
+]
 
 [Service]
 Kind = "Simple"
@@ -34,4 +37,4 @@ Arguments = [
 ]
 
 [Service.Healthcheck.Process]
-DelaySec = 2
+DelaySec = 1

@@ -7,7 +7,7 @@
 # matches the window title.
 
 [Unit]
-Name = "autohotkey-watchdog"
+Name = "autohotkey"
 Description = "Keeps the primary AutoHotkey script running across reloads"
 
 [Service]
@@ -36,4 +36,4 @@ Arguments = [
 ]
 
 [Service.Healthcheck.Process]
-DelaySec = 2
+DelaySec = 1

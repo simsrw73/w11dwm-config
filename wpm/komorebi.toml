@@ -1,0 +1,40 @@
+# wpm unit: komorebi, elevated.
+#
+# wpmd runs non-elevated, and anything it launches directly would be too, so
+# komorebi couldn't manage admin windows. Instead this unit runs the elevated
+# "komorebi" scheduled task (no trigger of its own; see install-tasks.ps1)
+# and adopts komorebi.exe by name. wpm can't kill an elevated process, so
+# stopping goes through `komorebic stop`.
+
+[Unit]
+Name = "komorebi"
+Description = "Tiling window management (elevated, via scheduled task)"
+Requires = [
+    "autohotkey"
+]
+
+[Service]
+Kind = "Forking"
+Autostart = true
+Restart = "OnFailure"
+RestartSec = 5
+Environment = [[
+    "KOMOREBI_CONFIG_HOME",
+    "$USERPROFILE/.config/komorebi",
+]]
+
+[Service.ExecStart]
+Executable = "schtasks.exe"
+Arguments = ["/Run", "/TN", "komorebi"]
+
+[[Service.ExecStop]]
+Executable = "komorebic.exe"
+Arguments = ["stop"]
+
+[[Service.ExecStopPost]]
+Executable = "komorebic.exe"
+Arguments = ["restore-windows"]
+
+[Service.Healthcheck.Process]
+Target = "komorebi.exe"
+DelaySec = 2

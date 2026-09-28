@@ -26,7 +26,7 @@ $Map = [ordered]@{
     flowlauncher = @{ From = 'FlowLauncher'; Include = 'Settings/Settings.json', 'Settings/Plugins/*/Settings.json',
                                                        'Settings/Plugins/*/PluginSettings.json', 'Themes/*.xaml'
                       Exclude = 'Settings/Plugins/Github Quick Launcher/*' }   # holds a GitHub token
-    wpm          = @{ From = 'wpm';          Include = '*.toml', '*.ps1', '*.md' }
+    wpm          = @{ From = 'wpm';          Include = '*.toml', '*.ps1', '*.md', 'tests/Watchdog.Tests.ps1' }
 }
 
 # Keep these untouched when mirroring (not copied from the source)

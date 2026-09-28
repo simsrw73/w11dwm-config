@@ -7,7 +7,7 @@
 # (app-x.y.z directories) don't break the path.
 
 [Unit]
-Name = "flowlauncher-watchdog"
+Name = "flowlauncher"
 Description = "Keeps Flow Launcher running across restarts and updates"
 
 [Service]
@@ -35,4 +35,4 @@ Arguments = [
 ]
 
 [Service.Healthcheck.Process]
-DelaySec = 2
+DelaySec = 1
