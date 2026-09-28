@@ -4,6 +4,8 @@ My Windows 11 desktop and window-management setup, shared here so it can be
 discussed. It's a tiling window manager driven entirely from the keyboard, with a
 custom status bar and a launcher, themed with Catppuccin Mocha throughout.
 
+![The 4K monitor: a terminal and Zed tiled side by side under the yasb bar](docs/images/desktop.jpg)
+
 | Tool | Role | Folder | Lives at |
 | --- | --- | --- | --- |
 | [komorebi](https://github.com/LGUG2Z/komorebi) | Tiling window manager | [`komorebi/`](komorebi) | `~/.config/komorebi` (`KOMOREBI_CONFIG_HOME`) |
@@ -24,13 +26,21 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
 - **Keys (AutoHotkey → komorebic):** `autohotkey/WindowManager.ahk` follows komorebi's
   sample whkdrc, with **Alt** as the WM modifier (`Alt+h/j/k/l` to focus, `Alt+1..9` to change workspace,
   `Alt+Shift+1..9` to move a window to a workspace, …). It calls `komorebic` through the small wrapper
-  in `autohotkey/Lib/Komorebi.ahk`.
+  in `autohotkey/Lib/Komorebi.ahk`. `Alt+/` opens [Legend](https://github.com/simsrw73/Legend.ahk),
+  an overlay listing every binding for the app you're in.
+
+  <img src="docs/images/legend-overlay.png" width="575" alt="Legend's komorebi page: workspace, window and stack keys">
 - **App chords:** `Win+Space` opens a which-key style menu (`autohotkey/Chords.ahk`, built on
   [Legend](https://github.com/simsrw73/Legend.ahk)'s chord mode). Pressing a key focuses that app, or launches it if it isn't running, and
   komorebi's rules take care of which workspace it lands on. Apps are defined once in
   `autohotkey/Apps.ahk`.
+
+  <img src="docs/images/chord-menu.png" width="293" alt="The Win+Space launcher: one key per app, dots for running apps, › for submenus">
 - **Bar:** yasb reads komorebi's state for its workspace and layout widgets. It has a full
   bar on the primary monitor and a slim one on the others.
+
+  ![Left of the bar: launchpad, komorebi controls and layout, workspaces, active window](docs/images/bar-left.png)
+  ![Right of the bar: media, system metrics, tray and controls, GitHub and Windows notifications, power menu](docs/images/bar-right.png)
 - **Startup and supervision:** wpm starts the desktop at logon. It runs komorebi elevated
   through a scheduled task, and runs yasb, the main AutoHotkey script and Flow Launcher
   through `wpm/watchdog.ps1`, which restarts them if they exit (and yasb if it hangs).
