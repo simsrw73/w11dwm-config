@@ -1,6 +1,9 @@
 #Requires AutoHotkey v2.0
 
 class Komorebi {
+    ; True while komorebi is running, even if it is paused.
+    static IsRunning() => ProcessExist("komorebi.exe") != 0
+
     static Run(args*) {
         return RunWait(this.CommandLine(args), , "Hide")
     }
@@ -42,6 +45,21 @@ class Komorebi {
             pos += match.Len
         }
         return name
+    }
+
+    ; hwnd → name of the workspace managing it, from one state query (same rule as
+    ; WorkspaceOf: the last workspace name before each hwnd).
+    static WorkspaceMap() {
+        state := this.Query("state")
+        result := Map(), name := "", pos := 1
+        while pos := RegExMatch(state, '"(name|hwnd)":\s*(?:"([^"]*)"|(\d+))', &match, pos) {
+            if match[1] = "name"
+                name := match[2]
+            else
+                result[Integer(match[3])] := name
+            pos += match.Len
+        }
+        return result
     }
 
     static CommandLine(args) {

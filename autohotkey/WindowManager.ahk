@@ -17,16 +17,18 @@ BindWorkspaceHotkeys(workspaces) {
 }
 FocusWorkspaceHotkey(workspace) => (*) => Komorebi.FocusWorkspace(workspace)
 MoveToWorkspaceHotkey(workspace) => (*) => Komorebi.MoveToWorkspace(workspace)
+; Without komorebi, Alt+H/J/K/L still move focus, by window position.
+FocusHotkey(direction) => (*) => Komorebi.IsRunning() ? Komorebi.Run("focus", direction) : WindowFocus.Move(direction)
 
 komorebiKeys.Category("Workspaces", [
     ["!+0", "to scratch", (*) => Komorebi.MoveToWorkspace("scratch")]
 ], "Move window")
 
 komorebiKeys.Category("Focus / move / stack", [
-    ["!h", "focus left", (*) => Komorebi.Run("focus", "left"), {Row: "Alt+H/J/K/L", Text: "focus ← ↓ ↑ →"}],
-    ["!j", "focus down", (*) => Komorebi.Run("focus", "down"), {Row: "Alt+H/J/K/L"}],
-    ["!k", "focus up", (*) => Komorebi.Run("focus", "up"), {Row: "Alt+H/J/K/L"}],
-    ["!l", "focus right", (*) => Komorebi.Run("focus", "right"), {Row: "Alt+H/J/K/L"}],
+    ["!h", "focus left", FocusHotkey("left"), {Row: "Alt+H/J/K/L", Text: "focus ← ↓ ↑ →"}],
+    ["!j", "focus down", FocusHotkey("down"), {Row: "Alt+H/J/K/L"}],
+    ["!k", "focus up", FocusHotkey("up"), {Row: "Alt+H/J/K/L"}],
+    ["!l", "focus right", FocusHotkey("right"), {Row: "Alt+H/J/K/L"}],
     ["!+h", "move left", (*) => Komorebi.Run("move", "left"), {Row: "Alt+Shift+H/J/K/L", Text: "move window ← ↓ ↑ →"}],
     ["!+j", "move down", (*) => Komorebi.Run("move", "down"), {Row: "Alt+Shift+H/J/K/L"}],
     ["!+k", "move up", (*) => Komorebi.Run("move", "up"), {Row: "Alt+Shift+H/J/K/L"}],
@@ -64,6 +66,34 @@ komorebiKeys.Category("Monitors & manager", [
     ["!+o", "reload komorebi config", (*) => Komorebi.Run("reload-configuration")],
     ["!p", "pause komorebi", (*) => Komorebi.Run("toggle-pause")]
 ])
+
+; Window switchers (Legend pickers): Alt+A all windows, Alt+S this monitor (h/l in
+; either cycles all windows / this desktop / this monitor). komorebi-managed windows
+; show their workspace; picking one on a hidden workspace switches to it first.
+BindWindowSwitchers()
+
+BindWindowSwitchers() {
+    for trigger, scope in Map("!a", "all", "!s", "monitor")
+        Legend.WindowSwitcher(trigger, {Scope: scope, Detail: KomorebiDetail, Activate: SwitchToWindow})
+}
+
+; komorebi-managed windows go through WindowLauncher (it focuses their workspace first);
+; everything else, including windows on other virtual desktops, through Legend.
+SwitchToWindow(hwnd) {
+    if Komorebi.IsRunning() && Komorebi.WorkspaceOf(hwnd) != ""
+        return WindowLauncher.Activate(hwnd)
+    LegendWindows.Activate(hwnd)
+}
+
+; The row detail: app name, plus the komorebi workspace. One state query per second at most.
+KomorebiDetail(win) {
+    static workspaces := Map(), stamp := 0
+    if A_TickCount - stamp > 1000 {
+        workspaces := Komorebi.IsRunning() ? Komorebi.WorkspaceMap() : Map()
+        stamp := A_TickCount
+    }
+    return workspaces.Has(win.Hwnd) ? win.App " · " workspaces[win.Hwnd] : win.App
+}
 
 ; Windows Hello / credential prompts (CredentialUIBroker) often open behind the active
 ; window because the app that asked for them isn't in the foreground. komorebi ignores

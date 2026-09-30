@@ -28,6 +28,11 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
   `Alt+Shift+1..9` to move a window to a workspace, …). It calls `komorebic` through the small wrapper
   in `autohotkey/Lib/Komorebi.ahk`. `Alt+/` opens [Legend](https://github.com/simsrw73/Legend.ahk),
   an overlay listing every binding for the app you're in.
+- **Without komorebi:** `Alt+h/j/k/l` still move focus, to the nearest visible window in that
+  direction, crossing to the next monitor at the edge (`autohotkey/Lib/WindowFocus.ahk`).
+- **Window switchers:** `Alt+A` (all windows) and `Alt+S` (this monitor) open Legend window
+  pickers: `Ctrl+N/P` move, a letter or Enter switches, `/` filters, `Ctrl+T` changes scope. Windows on
+  hidden komorebi workspaces show their workspace and switch to it.
 
   <img src="docs/images/legend-overlay.png" width="575" alt="Legend's komorebi page: workspace, window and stack keys">
 - **App chords:** `Win+Space` opens a which-key style menu (`autohotkey/Chords.ahk`, built on
