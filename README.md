@@ -29,7 +29,7 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
   in `autohotkey/Lib/Komorebi.ahk`. `Alt+/` opens [Legend](https://github.com/simsrw73/Legend.ahk),
   an overlay listing every binding for the app you're in.
 - **Without komorebi:** `Alt+h/j/k/l` still move focus, to the nearest visible window in that
-  direction, crossing to the next monitor at the edge (`autohotkey/Lib/WindowFocus.ahk`).
+  direction, crossing to the next monitor at the edge (Legend's `LegendWindows.Focus`).
 - **Window switchers:** `Alt+A` (all windows) and `Alt+S` (this monitor) open Legend window
   pickers: `Ctrl+N/P` move, a letter or Enter switches, `/` filters, `Ctrl+T` changes scope. Windows on
   hidden komorebi workspaces show their workspace and switch to it.

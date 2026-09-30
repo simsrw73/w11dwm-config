@@ -18,7 +18,7 @@ BindWorkspaceHotkeys(workspaces) {
 FocusWorkspaceHotkey(workspace) => (*) => Komorebi.FocusWorkspace(workspace)
 MoveToWorkspaceHotkey(workspace) => (*) => Komorebi.MoveToWorkspace(workspace)
 ; Without komorebi, Alt+H/J/K/L still move focus, by window position.
-FocusHotkey(direction) => (*) => Komorebi.IsRunning() ? Komorebi.Run("focus", direction) : WindowFocus.Move(direction)
+FocusHotkey(direction) => (*) => Komorebi.IsRunning() ? Komorebi.Run("focus", direction) : LegendWindows.Focus(direction)
 
 komorebiKeys.Category("Workspaces", [
     ["!+0", "to scratch", (*) => Komorebi.MoveToWorkspace("scratch")]
