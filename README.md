@@ -34,7 +34,7 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
   pickers: `Ctrl+N/P` move, a letter or Enter switches, `/` filters, `Ctrl+T` changes scope. Windows on
   hidden komorebi workspaces show their workspace and switch to it.
 
-  <img src="docs/images/legend-overlay.png" width="575" alt="Legend's komorebi page: workspace, window and stack keys">
+  <img src="docs/images/legend-overlay.png" width="735" alt="Legend's komorebi page: workspace, window and stack keys">
 - **App chords:** `Win+Space` opens a which-key style menu (`autohotkey/Chords.ahk`, built on
   [Legend](https://github.com/simsrw73/Legend.ahk)'s chord mode). Pressing a key focuses that app, or launches it if it isn't running, and
   komorebi's rules take care of which workspace it lands on. Apps are defined once in
