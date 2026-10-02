@@ -53,7 +53,7 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
 
 ## About this repo
 
-The real files live in a private dotfiles repo in `~/.config`. [`sync.ps1`](sync.ps1)
+The real files live in my [dotfiles repo](https://github.com/simsrw73/dotfiles-windows), applied to `~/.config`. [`sync.ps1`](sync.ps1)
 copies an explicit allowlist from there into this repo, mirroring deletions, and then
 scans the result for anything that looks like a secret. Flow Launcher plugins are listed in
 [`flowlauncher/plugins.md`](flowlauncher/plugins.md) and the plugin binaries aren't included.
