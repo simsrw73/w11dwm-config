@@ -13,14 +13,15 @@
 #Include "Hotstrings.ahk"
 
 ; Alt+/ shows the shortcuts registered through Legend plus legend/pages/*.md.
-; Page letters follow the Win+Space launcher (Chords.ahk) where they don't clash.
+; Page letters match the top level of the Win+Space launcher (Chords.ahk), so a
+; letter means the same app in both. Pages of my own use letters the launcher doesn't.
 Legend.Start({
     Pages: [A_ScriptDir "\legend\pages"],
     PageKeys: Map(
-        "Zed", "z", "Obsidian", "n", "Spark", "m", "TickTick", "t", "Fantastical", "d",
-        "File Explorer", "e", "Everything", "f", "Bitwarden", "b", "Windows Terminal", "s",
-        "Claude", "c", "Zen", "w", "Koffee", "o",
-        "komorebi", "k", "AutoHotkey", "a", "Launch", "l", "Pickers", "p"),
+        "Obsidian", "n", "Typora", "y", "Spark", "m", "TickTick", "o", "Fantastical", "c",
+        "Zed", "z", "Windows Terminal", "t", "File Explorer", "f", "Everything", "s",
+        "Koffee", "k", "Bitwarden", "p",
+        "komorebi", "w", "AutoHotkey", "h", "Launch", "l", "Pickers", "i"),
     Themes: [A_ScriptDir "\legend\themes"],
     Theme: "mocha-yasb"
 })

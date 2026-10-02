@@ -7,24 +7,57 @@
 ; "Launch" page in Alt+/.
 
 Legend.Chord("#Space", "Launch", [
+    ;ChordLaunch("c", "Claude Code", Apps.ClaudeCode),
+
+    ChordLaunch("n", "Obsidian", Apps.Obsidian),        ;notes
+    ChordLaunch("y", "Typora", Apps.Typora),            ;markdown
+
+    ChordLaunch("m", "Spark", Apps.Spark),              ;email
+    ChordLaunch("o", "TickTick", Apps.TickTick),        ;todo/organize
+    ChordLaunch("c", "Fantastical", Apps.Fantastical),  ;calendar
+
     ChordLaunch("z", "Zed", Apps.Zed),
-    ChordLaunch("Z", "Zen", Apps.Zen),   ; Shift+Z
-    ChordLaunch("c", "Claude Code", Apps.ClaudeCode),
-    ChordLaunch("s", "Shell", Apps.Shell),
-    ChordLaunch("n", "Obsidian", Apps.Obsidian),
-    ChordSubmenu("w", "Research", [
-        ChordLaunch("w", "Zen", Apps.Zen),
+    ChordLaunch("t", "Terminal", Apps.Shell),           ;windows terminal
+
+    ChordLaunch("f", "Explorer", Apps.Explorer),        ;file manager
+    ChordLaunch("s", "Everything", Apps.Everything),    ;search
+    ChordLaunch("k", "Koffee", Apps.Koffee),
+
+    ChordLaunch("p", "Bitwarden", Apps.Bitwarden),      ;password manager
+    ChordLaunch("x", "Task Manager", Apps.TaskManager),
+
+    ChordSubmenu("a", "AI", [
+        ChordLaunch("p", "Perplexity", Apps.Perplexity),
+        ChordLaunch("a", "Claude", Apps.Claude),
+        ChordLaunch("o", "ChatGPT", Apps.ChatGPT),
+        ChordLaunch("c", "GitHub Copilot", Apps.Copilot),
+        ChordLaunch("g", "Gemini", Apps.Gemini)]),
+
+    ChordSubmenu("b", "Browser", [
+        ChordLaunch("z", "Zen", Apps.Zen),
         ChordLaunch("b", "Brave", Apps.Brave),
         ChordLaunch("c", "Chrome", Apps.Chrome),
-        ChordLaunch("e", "Edge", Apps.Edge),
-        ChordLaunch("t", "Typora", Apps.Typora)]),
-    ChordSubmenu("a", "AI Lab", [
-        ChordLaunch("p", "Perplexity", Apps.Perplexity),
-        ChordLaunch("c", "Claude", Apps.Claude),
-        ChordLaunch("o", "ChatGPT", Apps.ChatGPT),
-        ChordLaunch("h", "GitHub Copilot", Apps.Copilot),
-        ChordLaunch("g", "Gemini", Apps.Gemini)]),
-    ChordSubmenu("u", "Admin", [
+        ChordLaunch("e", "Edge", Apps.Edge)]),
+
+    ChordSubmenu("g", "Gaming", [
+        ChordLaunch("s", "Steam", Apps.Steam),
+        ChordLaunch("g", "GOG Galaxy", Apps.GOG),
+        ChordLaunch("a", "Amazon Games", Apps.AmazonGames),
+        ChordLaunch("b", "Battle.net", Apps.BattleNet),
+        ChordLaunch("e", "Epic Games", Apps.Epic),
+        ChordLaunch("u", "Ubisoft Connect", Apps.Ubisoft),
+        ChordLaunch("x", "Xbox", Apps.Xbox),
+        ChordLaunch("v", "Vortex", Apps.Vortex),
+        ChordLaunch("m", "Mod Organizer", Apps.ModOrganizer)]),
+
+    ChordSubmenu("T", "Shell", [
+        ChordLaunch("p", "Powershell", Apps.Powershell),
+        ChordLaunch("a", "Arch", Apps.ArchWSL),
+        ChordLaunch("k", "Kali", Apps.KaliWSL),
+        ChordLaunch("u", "Ubuntu", Apps.UbuntuWSL),
+        ChordLaunch("d", "MS Dev Shell", Apps.MSDevShell)]),
+
+    ChordSubmenu("r", "Admin", [                        ;root
         ChordLaunch("u", "UniGetUI", Apps.UniGetUI),
         ChordAction("w", "Windows Update", OpenWindowsUpdate),
         ChordLaunch("s", "Settings", Apps.Settings),
@@ -43,24 +76,7 @@ Legend.Chord("#Space", "Launch", [
         ChordLaunch("i", "HWiNFO", Apps.HWiNFO),
         ChordLaunch("z", "WizTree", Apps.WizTree),
         ChordLaunch("b", "WinBox", Apps.WinBox)]),
-    ChordSubmenu("g", "Games", [
-        ChordLaunch("s", "Steam", Apps.Steam),
-        ChordLaunch("g", "GOG Galaxy", Apps.GOG),
-        ChordLaunch("a", "Amazon Games", Apps.AmazonGames),
-        ChordLaunch("b", "Battle.net", Apps.BattleNet),
-        ChordLaunch("e", "Epic Games", Apps.Epic),
-        ChordLaunch("u", "Ubisoft Connect", Apps.Ubisoft),
-        ChordLaunch("x", "Xbox", Apps.Xbox),
-        ChordLaunch("v", "Vortex", Apps.Vortex),
-        ChordLaunch("m", "Mod Organizer", Apps.ModOrganizer)]),
-    ChordLaunch("m", "Spark", Apps.Spark),
-    ChordLaunch("t", "TickTick", Apps.TickTick),
-    ChordLaunch("d", "Fantastical", Apps.Fantastical),
-    ChordLaunch("e", "Explorer", Apps.Explorer),
-    ChordLaunch("f", "Everything", Apps.Everything),
-    ChordLaunch("k", "Koffee", Apps.Koffee),
-    ChordLaunch("b", "Bitwarden", Apps.Bitwarden),
-    ChordLaunch("x", "Task Manager", Apps.TaskManager),
+
     ChordAction("Space", "Flow Launcher", () => Send("^``"))
 ])
 

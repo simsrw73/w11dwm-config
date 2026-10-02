@@ -17,6 +17,18 @@ Apps := {
     Shell:       { Criteria: "Shell ahk_exe WindowsTerminal.exe",
                    Command: 'wt.exe -w shell new-tab --title "Shell" --suppressApplicationTitle -p "PowerShell"' },
 
+    ; shells: each in its own named Terminal window (Criteria matches the title's start)
+    Powershell:  { Criteria: "PowerShell ahk_exe WindowsTerminal.exe",
+                   Command: 'wt.exe -w powershell new-tab --title "PowerShell" --suppressApplicationTitle -p "PowerShell"' },
+    ArchWSL:     { Criteria: "Arch ahk_exe WindowsTerminal.exe",
+                   Command: 'wt.exe -w arch new-tab --title "Arch" --suppressApplicationTitle -p "Arch Linux"' },
+    KaliWSL:     { Criteria: "Kali ahk_exe WindowsTerminal.exe",
+                   Command: 'wt.exe -w kali new-tab --title "Kali" --suppressApplicationTitle -p "kali-linux"' },
+    UbuntuWSL:   { Criteria: "Ubuntu ahk_exe WindowsTerminal.exe",
+                   Command: 'wt.exe -w ubuntu new-tab --title "Ubuntu" --suppressApplicationTitle -p "Ubuntu-26.04"' },
+    MSDevShell:  { Criteria: "MS Dev Shell ahk_exe WindowsTerminal.exe",
+                   Command: 'wt.exe -w devshell new-tab --title "MS Dev Shell" --suppressApplicationTitle -p "Developer Command Prompt (VS 2026)"' },
+
     ; notes
     Obsidian:    { Criteria: "ahk_exe Obsidian.exe", Command: Quote(LocalPrograms "\Obsidian\Obsidian.exe") },
 
