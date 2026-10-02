@@ -8,6 +8,7 @@
 
 Legend.Chord("#Space", "Launch", [
     ChordLaunch("z", "Zed", Apps.Zed),
+    ChordLaunch("Z", "Zen", Apps.Zen),   ; Shift+Z
     ChordLaunch("c", "Claude Code", Apps.ClaudeCode),
     ChordLaunch("s", "Shell", Apps.Shell),
     ChordLaunch("n", "Obsidian", Apps.Obsidian),

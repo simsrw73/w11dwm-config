@@ -53,10 +53,10 @@
   "TimeFormat": "HH:mm",
   "DateFormat": "yyyy-MM-dd",
   "FirstLaunch": false,
-  "SettingWindowWidth": 1262.6666666666665,
-  "SettingWindowHeight": 1340,
-  "SettingWindowTop": 58,
-  "SettingWindowLeft": 1287.3333333333333,
+  "SettingWindowWidth": 1264,
+  "SettingWindowHeight": 664,
+  "SettingWindowTop": 376,
+  "SettingWindowLeft": 648,
   "SettingWindowState": 0,
   "ShowPlaceholder": true,
   "PlaceholderText": "",
@@ -567,6 +567,18 @@
         "Version": "2.1.0",
         "ActionKeywords": [
           "yt"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "3C42AE50-FDA8-4579-8E9E-11989327FDC8": {
+        "ID": "3C42AE50-FDA8-4579-8E9E-11989327FDC8",
+        "Name": "Settings All",
+        "Version": "1.0.1",
+        "ActionKeywords": [
+          "set"
         ],
         "Priority": 0,
         "SearchDelayTime": null,

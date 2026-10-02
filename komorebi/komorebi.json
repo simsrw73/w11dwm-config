@@ -7,9 +7,9 @@
   "default_workspace_padding": 8,
   "default_container_padding": 6,
   "border": true,
-  "border_width": 2,
-  "border_offset": 0,
-  "border_style": "Rounded",
+  "border_width": 4,
+  "border_offset": -1,
+  "border_style": "System",
   "border_implementation": "Komorebi",
   "transparency": true,
   "transparency_alpha": 235,
@@ -19,27 +19,17 @@
     "style": "EaseOutCubic"
   },
   "stackbar": {
-    "mode": "OnStack",
-    "height": 32,
-    "label": "Title",
-    "tabs": {
-      "width": 240,
-      "font_family": "Inter",
-      "font_size": 13
-    }
+    "mode": "Never"
   },
   "theme": {
     "palette": "Catppuccin",
     "name": "Mocha",
     "single_border": "Lavender",
-    "stack_border": "Blue",
+    "stack_border": "Rosewater",
     "monocle_border": "Mauve",
     "floating_border": "Peach",
     "unfocused_border": "Surface0",
     "unfocused_locked_border": "Red",
-    "stackbar_background": "Crust",
-    "stackbar_focused_text": "Lavender",
-    "stackbar_unfocused_text": "Overlay1",
     "bar_accent": "Lavender"
   },
   "display_index_preferences": {
@@ -61,7 +51,30 @@
       "kind": "Exe",
       "id": "Task Manager.exe",
       "matching_strategy": "Equals"
-    }
+    },
+    {
+      "kind": "Exe",
+      "id": "notepad.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "notepad++.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "Flow.Launcher.exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "kind": "title",
+      "id": "Settings"
+    },
+    [
+      { "kind": "exe", "id": "zen.exe" },
+      { "kind": "title", "id": "Extension:" }
+    ]
   ],
   "monitors": [
     {
@@ -325,6 +338,16 @@
             {
               "kind": "Exe",
               "id": "Spark Desktop.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Thunderbird.exe",
+              "matching_strategy": "Equals"
+            },
+            {
+              "kind": "Exe",
+              "id": "Dorion.exe",
               "matching_strategy": "Equals"
             },
             {

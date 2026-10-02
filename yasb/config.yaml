@@ -122,7 +122,7 @@ widgets:
     type: "yasb.grouper.GrouperWidget"
     options:
       class_name: "metrics-pill"
-      widgets: ["memory", "cpu", "gpu", "disk", "traffic"]
+      widgets: ["memory", "cpu", "gpu", "disk", "ssd_health", "traffic"]
       collapse_options:
         enabled: false
 
@@ -446,6 +446,48 @@ widgets:
         on_middle: "do_nothing"
         on_right: "exec explorer C:\\"
 
+  # Drive health/temp via LibreHardwareMonitor's web server (LHM must be running,
+  # elevated). "Health" = 100 - NVMe Percentage Used / SATA remaining life.
+  # Sensor IDs are per-machine: /nvme/2 = C:, /nvme/3 = H:, /ssd/0 = G:, /hdd/1 = S:.
+  # The menu is a flat name/value list, so each drive's heading row is rich text
+  # (smaller, dimmer) showing total size, and its detail rows are space-indented.
+  ssd_health:
+    type: "yasb.libre_monitor.LibreHardwareMonitorWidget"
+    options:
+      class_name: "ssd-health-widget"
+      label: "<span>\U000F05F6</span>{info[value]}{info[unit]}"
+      label_alt: "<span>\U000F05F6</span>{info[value]}{info[unit]}"
+      sensor_id: "/nvme/2/level/20"  # C: Samsung 980 PRO
+      precision: 0
+      update_interval: 60000
+      history_size: 1
+      connection_error_label: "<span>\U000F05F6</span>--"
+      libre_menu:
+        header_label: "Drives"
+        precision: 0
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "#313244"
+        alignment: "right"
+        direction: "down"
+        sensors:
+          - { id: "/nvme/2/data/32", name: "<span style='font-size:11px; color:#9399b2'>C:  Samsung 980 PRO</span>" }
+          - { id: "/nvme/2/level/20", name: "    Health" }
+          - { id: "/nvme/2/temperature/0", name: "    Temp" }
+          - { id: "/nvme/3/data/32", name: "<span style='font-size:11px; color:#9399b2'>H:  Samsung 990 PRO</span>" }
+          - { id: "/nvme/3/level/20", name: "    Health" }
+          - { id: "/nvme/3/temperature/0", name: "    Temp" }
+          - { id: "/ssd/0/data/32", name: "<span style='font-size:11px; color:#9399b2'>G:  Samsung 860 EVO</span>" }
+          - { id: "/ssd/0/level/20", name: "    Health" }
+          - { id: "/ssd/0/temperature/0", name: "    Temp" }
+          - { id: "/hdd/1/data/32", name: "<span style='font-size:11px; color:#9399b2'>S:  WD Blue HDD</span>" }
+          - { id: "/hdd/1/temperature/0", name: "    Temp" }
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
+
   traffic:
     type: "yasb.traffic.TrafficWidget"
     options:
@@ -511,7 +553,7 @@ widgets:
       freq_min: 60
       freq_max: 12000
       hide_idle: true
-      hide_idle_after: 2000
+      hide_idle_after: 10000
       channels: mono
       mono_option: average
       reverse: false
