@@ -171,7 +171,7 @@
   "ShowAtTopmost": false,
   "SearchQueryResultsWithDelay": true,
   "SearchDelayTime": 150,
-  "SearchWindowScreen": "Cursor",
+  "SearchWindowScreen": "Focus",
   "SearchWindowAlign": "Center",
   "CustomScreenNumber": 1,
   "IgnoreHotkeysOnFullscreen": false,
@@ -186,8 +186,8 @@
   "AnimationSpeed": "Medium",
   "CustomAnimationLength": 360,
   "PluginSettings": {
-    "PythonExecutablePath": "C:\\Users\\simsr\\AppData\\Local\\Python\\bin\\pythonw.exe",
-    "NodeExecutablePath": "C:\\Users\\simsr\\.local\\state\\fnm_multishells\\31168_1790347936793\\node.exe",
+    "PythonExecutablePath": "C:\\Users\\simsrw73\\AppData\\Local\\Python\\bin\\pythonw.exe",
+    "NodeExecutablePath": "C:\\Users\\simsrw73\\.local\\state\\fnm_multishells\\31168_1790347936793\\node.exe",
     "Plugins": {
       "0ECADE17459B49F587BF81DC3A125110": {
         "ID": "0ECADE17459B49F587BF81DC3A125110",
