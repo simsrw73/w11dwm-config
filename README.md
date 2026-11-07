@@ -42,7 +42,9 @@ How it all starts at logon (scheduled tasks, elevation, environment): see [`star
 
   <img src="docs/images/chord-menu.png" width="293" alt="The Win+Space launcher: one key per app, dots for running apps, › for submenus">
 - **Bar:** yasb reads komorebi's state for its workspace and layout widgets. It has a full
-  bar on the primary monitor and a slim one on the others.
+  bar on the primary monitor and a slim one on the others. Its theme is
+  [catelier](https://github.com/simsrw73/catelier), which I publish on its own; `sync.ps1`
+  copies the theme's styles from there.
 
   ![Left of the bar: launchpad, komorebi controls and layout, workspaces, active window](docs/images/bar-left.png)
   ![Right of the bar: media, system metrics, tray and controls, GitHub and Windows notifications, power menu](docs/images/bar-right.png)
@@ -70,6 +72,7 @@ them for your own machine.
 This repo is the desktop part of my dotfiles, published on its own. These are the projects around it:
 
 - **[dotfiles-windows](https://github.com/simsrw73/dotfiles-windows)**: My whole Windows setup, managed with chezmoi: `~/.config`, the PowerShell profile, apps, keys and secrets. The other projects here are either used by it or published from it.
+- **[catelier](https://github.com/simsrw73/catelier)**: A Catppuccin theme for the yasb status bar, in all four flavors with your choice of accent. It's the bar in w11dwm-config and dotfiles-windows.
 - **[Legend.ahk](https://github.com/simsrw73/Legend.ahk)**: An AutoHotkey v2 library: an Alt+/ overlay of the shortcuts for the app you're in, which-key style chord menus, pickers and a window switcher. It runs the keys in w11dwm-config and dotfiles-windows.
 - **[DotForge](https://github.com/simsrw73/DotForge)**: A PowerShell module that installs and configures command-line tools: XDG paths, fzf pickers, completions, shell hooks. The PowerShell profile in dotfiles-windows loads it, and it sets up Starship to read the starship-p9cat config.
 - **[starship-p9cat](https://github.com/simsrw73/starship-p9cat)**: A Starship prompt in the powerlevel9k style, in Catppuccin colors. It's the prompt in dotfiles-windows, and a port of the CatPow theme from poshcat.omp.

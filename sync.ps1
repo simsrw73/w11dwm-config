@@ -10,18 +10,25 @@ here too. After copying, it scans for anything that looks like a secret and
 fails if it finds one.
 
 autohotkey/Lib/Legend is a git submodule and isn't touched.
+
+The yasb styles are the catelier theme (github.com/simsrw73/catelier). The
+live styles.css only @imports a local clone of it, so yasb/styles.css is
+copied from that clone instead, and the theme's flavor files come along.
 #>
 [CmdletBinding()]
 param(
-    [string] $Source = (Join-Path $HOME '.config')
+    [string] $Source = (Join-Path $HOME '.config'),
+    [string] $Catelier = (Join-Path $HOME 'projects/catelier')
 )
 $ErrorActionPreference = 'Stop'
 $Repo = $PSScriptRoot
 
-# dest folder => source folder + allowlist globs (relative to the source folder)
+# dest folder => source folder + allowlist globs (relative to the source folder).
+# Override: files to copy from somewhere else (relative path => full source path).
 $Map = [ordered]@{
     komorebi     = @{ From = 'komorebi';     Include = 'komorebi.json', 'applications.json' }
-    yasb         = @{ From = 'yasb';         Include = 'config.yaml', 'styles.css', 'launchpad/apps.json', 'launchpad/icons/*.png' }
+    yasb         = @{ From = 'yasb';         Include = 'config.yaml', 'styles.css', 'flavors/*.css', 'launchpad/apps.json', 'launchpad/icons/*.png'
+                      Override = @{ 'styles.css' = (Join-Path $Catelier 'styles.css') } }
     autohotkey   = @{ From = 'AutoHotKey';   Include = '*.ahk', 'Lib/*.ahk' }
     flowlauncher = @{ From = 'FlowLauncher'; Include = 'Settings/Settings.json', 'Settings/Plugins/*/Settings.json',
                                                        'Settings/Plugins/*/PluginSettings.json', 'Themes/*.xaml'
@@ -66,6 +73,12 @@ function Get-Allowed($root, $include, $exclude) {
     }
 }
 
+# The mirror publishes catelier's styles.css in place of the live one, so
+# anything added to the live file besides the @import would be lost.
+$liveStyles = [IO.File]::ReadAllText((Join-Path $Source 'yasb/styles.css'))
+$liveRules = ($liveStyles -replace '(?s)/\*.*?\*/', '' -replace '@import[^;]*;', '').Trim()
+if ($liveRules) { Write-Warning 'yasb/styles.css has overrides below its @import; the mirror leaves them out.' }
+
 foreach ($dest in $Map.Keys) {
     $spec = $Map[$dest]
     $srcRoot = (Resolve-Path (Join-Path $Source $spec.From)).Path
@@ -75,7 +88,8 @@ foreach ($dest in $Map.Keys) {
     foreach ($rel in $wanted) {
         $target = Join-Path $dstRoot $rel
         New-Item -ItemType Directory -Force (Split-Path $target -Parent) | Out-Null
-        Copy-RepoFile (Join-Path $srcRoot $rel) $target "$dest/$rel"
+        $from = if ($spec.Override -and $spec.Override.ContainsKey($rel)) { $spec.Override[$rel] } else { Join-Path $srcRoot $rel }
+        Copy-RepoFile $from $target "$dest/$rel"
     }
 
     # Mirror: drop files that are no longer in the allowlist / source

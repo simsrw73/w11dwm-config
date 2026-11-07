@@ -1,0 +1,59 @@
+/* Catppuccin Frappé, from github.com/catppuccin/palette (MIT) */
+
+:root {
+  --rosewater: #f2d5cf;
+  --rosewater-rgb: 242, 213, 207;
+  --flamingo: #eebebe;
+  --flamingo-rgb: 238, 190, 190;
+  --pink: #f4b8e4;
+  --pink-rgb: 244, 184, 228;
+  --mauve: #ca9ee6;
+  --mauve-rgb: 202, 158, 230;
+  --red: #e78284;
+  --red-rgb: 231, 130, 132;
+  --maroon: #ea999c;
+  --maroon-rgb: 234, 153, 156;
+  --peach: #ef9f76;
+  --peach-rgb: 239, 159, 118;
+  --yellow: #e5c890;
+  --yellow-rgb: 229, 200, 144;
+  --green: #a6d189;
+  --green-rgb: 166, 209, 137;
+  --teal: #81c8be;
+  --teal-rgb: 129, 200, 190;
+  --sky: #99d1db;
+  --sky-rgb: 153, 209, 219;
+  --sapphire: #85c1dc;
+  --sapphire-rgb: 133, 193, 220;
+  --blue: #8caaee;
+  --blue-rgb: 140, 170, 238;
+  --lavender: #babbf1;
+  --lavender-rgb: 186, 187, 241;
+  --text: #c6d0f5;
+  --text-rgb: 198, 208, 245;
+  --subtext1: #b5bfe2;
+  --subtext1-rgb: 181, 191, 226;
+  --subtext0: #a5adce;
+  --subtext0-rgb: 165, 173, 206;
+  --overlay2: #949cbb;
+  --overlay2-rgb: 148, 156, 187;
+  --overlay1: #838ba7;
+  --overlay1-rgb: 131, 139, 167;
+  --overlay0: #737994;
+  --overlay0-rgb: 115, 121, 148;
+  --surface2: #626880;
+  --surface2-rgb: 98, 104, 128;
+  --surface1: #51576d;
+  --surface1-rgb: 81, 87, 109;
+  --surface0: #414559;
+  --surface0-rgb: 65, 69, 89;
+  --base: #303446;
+  --base-rgb: 48, 52, 70;
+  --mantle: #292c3c;
+  --mantle-rgb: 41, 44, 60;
+  --crust: #232634;
+  --crust-rgb: 35, 38, 52;
+
+  /* Text on accent-filled backgrounds */
+  --on-accent: var(--crust);
+}
