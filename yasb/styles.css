@@ -27,6 +27,14 @@
   --accent: var(--flavor-accent);
   --accent-rgb: var(--flavor-accent-rgb);
 
+  /* Translucency: how much of the flavor color the bar and its pills keep over the
+     blurred desktop. Change both numbers (install.ps1 -Translucency does this for you):
+       Off 1 / 1, Subtle 0.6 / 0.8, Medium 0.4 / 0.7, Strong 0.2 / 0.6.
+     Pills keep more color than the bar so the text on them stays readable.
+     Needs Windows "Transparency effects" and blur_effect on the bar in config.yaml. */
+  --bar-glass: 1;
+  --pill-glass: 1;
+
   /* Fonts: each list falls back to a font that ships with Windows 11 or YASB.
      Inter is optional; without it, text uses Segoe UI Variable. */
   --font-text: "Inter", "Segoe UI Variable Text", "Segoe UI";
@@ -51,7 +59,7 @@
 }
 
 .yasb-bar {
-  background-color: rgba(var(--bar-rgb), 1);
+  background-color: rgba(var(--bar-rgb), var(--bar-glass));
   border-radius: var(--radius-outer);
   padding: 0 4px;
 }

@@ -58,7 +58,10 @@
      map them for contrast. The dark flavors use them as the palette intends. */
   /* Surfaces */
   --bar-rgb: var(--crust-rgb);
-  --pill-bg: rgba(var(--surface0-rgb), 0.45);
+  /* Pills: surface0 at 45% over crust, as one solid color so the pill can be made
+     see-through on its own when the bar is translucent */
+  --pill-rgb: 31, 32, 45;
+  --pill-bg: rgba(var(--pill-rgb), var(--pill-glass));
   --popup: var(--mantle);
   --popup-rgb: var(--mantle-rgb);
   /* Text, strongest to faintest */

@@ -59,7 +59,8 @@
      because its dim grays are too faint on a light background. */
   /* Surfaces */
   --bar-rgb: var(--crust-rgb);
-  --pill-bg: var(--base);
+  --pill-rgb: var(--base-rgb);
+  --pill-bg: rgba(var(--pill-rgb), var(--pill-glass));
   --popup: var(--base);
   --popup-rgb: var(--base-rgb);
   /* Text, strongest to faintest */
