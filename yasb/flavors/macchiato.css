@@ -54,6 +54,22 @@
   --crust: #181926;
   --crust-rgb: 24, 25, 38;
 
-  /* Text on accent-filled backgrounds */
+  /* Roles: styles.css uses these, not the palette names, so each flavor can
+     map them for contrast. The dark flavors use them as the palette intends. */
+  /* Surfaces */
+  --bar-rgb: var(--crust-rgb);
+  --pill-bg: rgba(var(--surface0-rgb), 0.45);
+  --popup: var(--mantle);
+  --popup-rgb: var(--mantle-rgb);
+  /* Text, strongest to faintest */
+  --fg: var(--text);
+  --fg-soft: var(--subtext1);
+  --fg-secondary: var(--subtext0);
+  --fg-muted: var(--overlay2);
+  --fg-subtle: var(--overlay1);
+  --fg-faint: var(--overlay0);
+  /* Accent used unless styles.css picks one, and text on accent fills */
+  --flavor-accent: var(--lavender);
+  --flavor-accent-rgb: var(--lavender-rgb);
   --on-accent: var(--crust);
 }

@@ -3,9 +3,12 @@
  * https://github.com/simsrw73/catelier
  *
  * Visual hierarchy (three tiers):
- *   1. primary   — time, focused workspace, active window      → --text
- *   2. secondary — media, controls, status icons               → --subtext0
- *   3. tertiary  — metrics                                     → --overlay0/1
+ *   1. primary   — time, focused workspace, active window      → --fg
+ *   2. secondary — media, controls, status icons               → --fg-secondary
+ *   3. tertiary  — metrics                                     → --fg-faint / --fg-subtle
+ *
+ * Colors come from roles (--fg-*, --bar-rgb, --pill-bg, --popup*) that each flavor
+ * file maps to its palette, so Latte can trade shades for contrast.
  * Accent colors are used only for state: accent = focus, peach = something pending,
  * red = critical threshold.
  *
@@ -19,10 +22,10 @@
 @import "flavors/mocha.css";
 
 :root {
-  /* Accent: any Catppuccin accent name, for example blue, mauve, pink, teal or lavender.
-     Change both lines. */
-  --accent: var(--lavender);
-  --accent-rgb: var(--lavender-rgb);
+  /* Accent: the flavor's default (lavender, or mauve in Latte), or any Catppuccin
+     accent name, for example var(--blue) and var(--blue-rgb). Change both lines. */
+  --accent: var(--flavor-accent);
+  --accent-rgb: var(--flavor-accent-rgb);
 
   /* Fonts: each list falls back to a font that ships with Windows 11 or YASB.
      Inter is optional; without it, text uses Segoe UI Variable. */
@@ -43,12 +46,12 @@
 * {
   font-family: var(--font-text), var(--font-icon);
   font-size: 13px;
-  color: var(--text);
+  color: var(--fg);
   font-weight: 500;
 }
 
 .yasb-bar {
-  background-color: rgba(var(--crust-rgb), 1);
+  background-color: rgba(var(--bar-rgb), 1);
   border-radius: var(--radius-outer);
   padding: 0 4px;
 }
@@ -90,7 +93,7 @@
 .media-pill .container,
 .controls-pill .container,
 .status-pill .container {
-  background-color: rgba(var(--surface0-rgb), 0.45);
+  background-color: var(--pill-bg);
   border-radius: var(--radius-pill);
   padding: 0 6px;
   margin: 5px 4px;
@@ -99,7 +102,7 @@
 /* Standalone single-icon items (launchpad, power) get the same pill shape */
 .launchpad-widget .widget-container,
 .power-menu-widget .widget-container {
-  background-color: rgba(var(--surface0-rgb), 0.45);
+  background-color: var(--pill-bg);
   border-radius: var(--radius-pill);
   padding: 0 10px;
   margin: 5px 4px;
@@ -116,7 +119,7 @@
 .power-menu-widget .label {
   font-family: var(--font-icon);
   font-size: 15px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 0 2px;
 }
 /* Power stands out: Catppuccin red, the strongest red in the palette */
@@ -140,7 +143,7 @@
 .komorebi-active-layout .label {
   font-family: var(--font-icon);
   font-size: 15px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 0 2px;
 }
 
@@ -166,7 +169,7 @@
 }
 .komorebi-stack .window .label {
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 .komorebi-stack .window:hover {
   background-color: rgba(var(--surface1-rgb), 0.6);
@@ -176,7 +179,7 @@
   border: 1px solid rgba(var(--accent-rgb), 0.18);
 }
 .komorebi-stack .window.active .label {
-  color: var(--text);
+  color: var(--fg);
 }
 
 /* Workspaces */
@@ -197,12 +200,12 @@
 }
 .komorebi-workspaces .ws-btn .label,
 .komorebi-workspaces .ws-btn.empty .label {
-  color: var(--overlay0);
+  color: var(--fg-faint);
   font-family: var(--font-text);
   font-size: 12px;
 }
 .komorebi-workspaces .ws-btn.populated .label {
-  color: var(--subtext0);
+  color: var(--fg-secondary);
 }
 .komorebi-workspaces .ws-btn.active {
   background-color: rgba(var(--accent-rgb), 0.18);
@@ -215,7 +218,7 @@
   background-color: rgba(var(--surface1-rgb), 0.6);
 }
 .komorebi-workspaces .offline-status {
-  color: var(--overlay0);
+  color: var(--fg-faint);
 }
 
 /* Active window title — plain text, no pill */
@@ -223,7 +226,7 @@
   padding: 0 10px;
 }
 .active-window-widget .label {
-  color: var(--text);
+  color: var(--fg);
   font-size: 13px;
   font-weight: 500;
   margin-left: 2px;
@@ -244,12 +247,12 @@
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--fg);
 }
 .clock-widget.date .label {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 .clock-widget .widget-container:hover {
   background-color: rgba(var(--surface1-rgb), 0.5);
@@ -262,13 +265,13 @@
 }
 .metrics-pill .icon {
   font-size: 13px;
-  color: var(--overlay0);
+  color: var(--fg-faint);
   padding: 0 5px 0 0;
 }
 .metrics-pill .label {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 /* min-widths sized for the widest value ("100%", "999 MB/s") so nothing moves */
 .memory-widget .label,
@@ -314,11 +317,11 @@
 .media-lite-widget .label {
   font-size: 12px;
   font-weight: 500;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
 }
 .media-lite-widget .artist {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 
 .audio-visualizer-widget .widget-container {
@@ -342,7 +345,7 @@
 .controls-pill .label {
   font-family: var(--font-icon);
   font-size: 15px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 0 2px;
 }
 .controls-pill .widget-container:hover,
@@ -380,7 +383,7 @@
 .systray .unpinned-visibility-btn {
   font-family: var(--font-icon);
   font-size: 11px;
-  color: var(--overlay0);
+  color: var(--fg-faint);
   border-radius: var(--radius-item);
   padding: 0 4px;
 }
@@ -393,7 +396,7 @@
 .status-pill .icon {
   font-family: var(--font-icon);
   font-size: 14px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 0 5px 0 0;
 }
 .status-pill .label {
@@ -405,7 +408,7 @@
 .github-widget .icon {
   font-family: var(--font-icon);
   font-size: 15px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 0 2px;
 }
 
@@ -422,10 +425,10 @@
  */
 
 .tooltip {
-  background-color: rgba(var(--mantle-rgb), 0.94);
+  background-color: rgba(var(--popup-rgb), 0.94);
   border: 1px solid var(--surface0);
   border-radius: var(--radius-outer);
-  color: var(--subtext1);
+  color: var(--fg-soft);
   padding: 8px 12px;
   font-family: var(--font-text);
   font-size: 12px;
@@ -449,9 +452,9 @@
 .github-menu,
 .systray-popup,
 .power-menu-compact {
-  background-color: rgba(var(--mantle-rgb), 0.9);
+  background-color: rgba(var(--popup-rgb), 0.9);
   border-radius: var(--radius-outer);
-  color: var(--text);
+  color: var(--fg);
 }
 
 /* Shared header / footer bands */
@@ -469,7 +472,7 @@
   padding: 14px 16px;
   font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 .bluetooth-menu .footer,
 .wifi-menu .footer,
@@ -479,7 +482,7 @@
   border-top: 1px solid rgba(var(--surface0-rgb), 0.9);
   padding: 12px 16px;
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 
 /* Shared small buttons inside popups (never Qt's default grey bevel) */
@@ -490,7 +493,7 @@
   background-color: rgba(var(--surface0-rgb), 0.7);
   border: 1px solid rgba(var(--surface1-rgb), 0.6);
   border-radius: var(--radius-item);
-  color: var(--subtext1);
+  color: var(--fg-soft);
   font-family: var(--font-text);
   font-size: 12px;
   font-weight: 500;
@@ -501,7 +504,7 @@
 .traffic-menu .header .reset-button:hover,
 .power-menu-compact .manage-accounts:hover {
   background-color: rgba(var(--surface1-rgb), 0.8);
-  color: var(--text);
+  color: var(--fg);
 }
 .bluetooth-menu .footer .scan-icon,
 .wifi-menu .footer .refresh-icon,
@@ -513,7 +516,7 @@
   background-color: transparent;
   border: none;
   border-radius: var(--radius-item);
-  color: var(--overlay2);
+  color: var(--fg-muted);
   min-width: 30px;
   min-height: 30px;
   padding: 0;
@@ -524,7 +527,7 @@
 .memory-popup .header .pin-btn:hover,
 .gpu-popup .header .pin-btn:hover {
   background-color: rgba(var(--surface1-rgb), 0.6);
-  color: var(--text);
+  color: var(--fg);
 }
 .cpu-popup .header .pin-btn.pinned,
 .memory-popup .header .pin-btn.pinned,
@@ -534,14 +537,14 @@
 
 /* Right-click / dropdown menus */
 .context-menu {
-  background-color: rgba(var(--mantle-rgb), 0.96);
+  background-color: rgba(var(--popup-rgb), 0.96);
   border: 1px solid var(--surface0);
   border-radius: var(--radius-outer);
   padding: 6px;
   font-family: var(--font-text);
 }
 .context-menu::item {
-  color: var(--text);
+  color: var(--fg);
   padding: 8px 14px;
   margin: 1px 0;
   border-radius: var(--radius-item);
@@ -557,7 +560,7 @@
   margin: 4px 8px;
 }
 .context-menu::item:disabled {
-  color: var(--overlay0);
+  color: var(--fg-faint);
 }
 .context-menu::indicator:checked {
   width: 4px;
@@ -577,7 +580,7 @@
 .gpu-popup .header .text {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 /* "Utilization" is a bare label inserted above the graph frame, so it carries its own inset */
 .cpu-popup .graph-container,
@@ -591,7 +594,7 @@
 .memory-popup .graph-title,
 .gpu-popup .graph-title {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding: 16px 16px 8px 16px;
 }
 .cpu-popup .cpu-graph,
@@ -623,7 +626,7 @@
 .memory-popup .stats .stat-label,
 .gpu-popup .stats .stat-label {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding: 0 0 4px 0;
 }
 .cpu-popup .stats .stat-value,
@@ -632,7 +635,7 @@
   font-family: var(--font-mono);
   font-size: 15px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
   padding: 0;
 }
 
@@ -645,7 +648,7 @@
 .traffic-menu .header .title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
   padding: 14px 16px;
 }
 .traffic-menu .header .reset-button {
@@ -653,7 +656,7 @@
 }
 .traffic-menu .interface-info {
   font-size: 12px;
-  color: var(--text);
+  color: var(--fg);
   padding: 4px 16px 0 16px;
 }
 .traffic-menu .download-speed,
@@ -672,24 +675,24 @@
   font-family: var(--font-mono);
   font-size: 22px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--fg);
 }
 .traffic-menu .upload-speed-unit,
 .traffic-menu .download-speed-unit {
   font-size: 12px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 4px 0 0 4px;
 }
 .traffic-menu .upload-speed-placeholder,
 .traffic-menu .download-speed-placeholder {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding: 0 0 4px 0;
 }
 .traffic-menu .section-title {
   font-size: 11px;
   font-weight: 600;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   margin-bottom: 6px;
 }
 .traffic-menu .session-section,
@@ -705,19 +708,19 @@
   margin-bottom: 16px;
 }
 .traffic-menu .data-text {
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   font-size: 12px;
   padding: 3px 0;
 }
 .traffic-menu .data-value {
   font-family: var(--font-mono);
-  color: var(--text);
+  color: var(--fg);
   font-size: 12px;
   padding: 3px 0;
 }
 .traffic-menu .internet-info {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding: 2px 16px 16px 16px;
 }
 
@@ -738,12 +741,12 @@
 }
 .disk-group-label {
   font-size: 12px;
-  color: var(--text);
+  color: var(--fg);
 }
 .disk-group-label-size {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 .disk-group-label-bar {
   max-height: 4px;
@@ -766,12 +769,12 @@
 }
 .libre-menu .sensor-name {
   font-size: 12px;
-  color: var(--text);
+  color: var(--fg);
 }
 .libre-menu .sensor-value {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 
 /* ── Calendar ── */
@@ -782,7 +785,7 @@
 .clock-popup.calendar .calendar-table,
 .clock-popup.calendar .calendar-table::item {
   background-color: transparent;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   font-family: var(--font-mono);
   font-size: 12px;
   border: none;
@@ -800,7 +803,7 @@
 .clock-popup.calendar .year-label {
   font-family: var(--font-text);
   font-size: 14px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
 }
 .clock-popup.calendar .day-label {
   margin-top: 12px;
@@ -809,12 +812,12 @@
   font-family: var(--font-text);
   font-size: 72px;
   font-weight: 800;
-  color: var(--text);
+  color: var(--fg);
   margin-top: -12px;
 }
 .clock-popup.calendar .week-label {
   font-size: 11px;
-  color: var(--overlay0);
+  color: var(--fg-faint);
 }
 .clock-popup.calendar .extended-container {
   border-left: 1px solid rgba(var(--surface1-rgb), 0.6);
@@ -830,7 +833,7 @@
 }
 .komorebi-control-menu .button {
   background-color: rgba(var(--surface0-rgb), 0.6);
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   font-family: var(--font-icon);
   font-size: 18px;
   padding: 12px 18px;
@@ -840,7 +843,7 @@
 }
 .komorebi-control-menu .button:hover {
   background-color: rgba(var(--surface1-rgb), 0.8);
-  color: var(--text);
+  color: var(--fg);
 }
 .komorebi-control-menu .button.active {
   background-color: rgba(var(--accent-rgb), 0.2);
@@ -848,7 +851,7 @@
 }
 .komorebi-control-menu .button:disabled,
 .komorebi-control-menu .button.active:disabled {
-  color: var(--overlay0);
+  color: var(--fg-faint);
   background-color: rgba(var(--surface0-rgb), 0.3);
 }
 .komorebi-control-menu .footer {
@@ -856,7 +859,7 @@
 }
 .komorebi-control-menu .footer .text {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 
 .komorebi-layout-menu {
@@ -874,12 +877,12 @@
 .komorebi-layout-menu .menu-item-icon {
   font-family: var(--font-icon);
   font-size: 15px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding: 0 12px 0 2px;
 }
 .komorebi-layout-menu .menu-item-text {
   font-size: 12px;
-  color: var(--text);
+  color: var(--fg);
 }
 .komorebi-layout-menu .separator {
   max-height: 1px;
@@ -901,18 +904,18 @@
 .media-lite-menu .title {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 .media-lite-menu .artist {
   font-size: 12px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   margin-top: 4px;
   margin-bottom: 14px;
 }
 .media-lite-menu .btn {
   font-family: "Segoe Fluent Icons";
   font-size: 14px;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   margin: 4px;
   min-width: 40px;
   max-width: 40px;
@@ -924,10 +927,10 @@
 }
 .media-lite-menu .btn:hover {
   background-color: rgba(var(--text-rgb), 0.1);
-  color: var(--text);
+  color: var(--fg);
 }
 .media-lite-menu .btn.play {
-  background-color: var(--text);
+  background-color: var(--fg);
   color: var(--crust);
   font-size: 18px;
 }
@@ -937,13 +940,13 @@
 }
 .media-lite-menu .btn.disabled,
 .media-lite-menu .btn.disabled:hover {
-  color: var(--overlay0);
+  color: var(--fg-faint);
   background-color: transparent;
 }
 .media-lite-menu .playback-time {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 .media-lite-menu .progress-slider {
   height: 10px;
@@ -966,14 +969,14 @@
 .media-lite-menu .volume-button {
   font-family: "Segoe Fluent Icons";
   font-size: 16px;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   background-color: transparent;
   border: none;
   min-width: 28px;
   min-height: 28px;
 }
 .media-lite-menu .volume-slider-popup {
-  background-color: var(--mantle);
+  background-color: var(--popup);
   border: 1px solid var(--surface0);
   border-radius: var(--radius-outer);
   padding: 14px 10px;
@@ -991,13 +994,13 @@
 .bluetooth-menu .header .title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 .bluetooth-menu .header .power-button {
   background-color: rgba(var(--surface1-rgb), 0.7);
   border: none;
   border-radius: var(--radius-item);
-  color: var(--subtext1);
+  color: var(--fg-soft);
   font-size: 11px;
   font-weight: 600;
   padding: 5px 16px;
@@ -1025,7 +1028,7 @@
 .bluetooth-menu .section-title {
   font-size: 11px;
   font-weight: 600;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding: 10px 8px 6px 8px;
 }
 .bluetooth-menu .bluetooth-item,
@@ -1049,7 +1052,7 @@
   font-family: "Segoe Fluent Icons";
   font-size: 18px;
   font-weight: 400;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   min-width: 28px;
   margin-right: 12px;
 }
@@ -1057,26 +1060,26 @@
 .wifi-menu .wifi-item .name {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 .bluetooth-menu .bluetooth-item .status,
 .wifi-menu .wifi-item .status,
 .wifi-menu .wifi-item .strength {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding-top: 2px;
 }
 .bluetooth-menu .bluetooth-item .battery {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   padding-right: 6px;
 }
 .bluetooth-menu .bluetooth-item .battery-icon {
   font-family: "Segoe Fluent Icons";
   font-size: 16px;
   font-weight: 400;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
 }
 .bluetooth-menu .bluetooth-item .battery-icon.low,
 .bluetooth-menu .bluetooth-item .battery-icon.empty {
@@ -1091,7 +1094,7 @@
   background-color: rgba(var(--surface1-rgb), 0.7);
   border: none;
   border-radius: var(--radius-item);
-  color: var(--text);
+  color: var(--fg);
   font-size: 12px;
   font-weight: 600;
   padding: 6px 16px;
@@ -1104,7 +1107,7 @@
   background-color: rgba(var(--crust-rgb), 0.6);
   border: 1px solid var(--surface1);
   border-radius: var(--radius-item);
-  color: var(--text);
+  color: var(--fg);
   padding: 6px 8px;
 }
 .bluetooth-menu .error-message,
@@ -1127,7 +1130,7 @@
 .audio-menu .audio-container .device {
   background-color: transparent;
   border: none;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   text-align: left;
   font-size: 12px;
   padding: 9px 12px;
@@ -1136,11 +1139,11 @@
 }
 .audio-menu .audio-container .device:hover {
   background-color: rgba(var(--surface1-rgb), 0.45);
-  color: var(--text);
+  color: var(--fg);
 }
 .audio-menu .audio-container .device.selected {
   background-color: rgba(var(--accent-rgb), 0.16);
-  color: var(--text);
+  color: var(--fg);
 }
 .audio-menu .system-volume-container {
   background: transparent;
@@ -1153,7 +1156,7 @@
 .audio-menu .toggle-apps {
   background-color: transparent;
   border: none;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   min-width: 28px;
   min-height: 28px;
   border-radius: var(--radius-item);
@@ -1162,7 +1165,7 @@
 .audio-menu .toggle-apps:hover,
 .audio-menu .toggle-apps.expanded {
   background-color: rgba(var(--surface1-rgb), 0.6);
-  color: var(--text);
+  color: var(--fg);
 }
 .audio-menu .apps-container {
   background-color: rgba(var(--surface0-rgb), 0.35);
@@ -1210,7 +1213,7 @@
   font-family: "Segoe Fluent Icons";
   font-size: 14px;
   background-color: rgba(var(--surface0-rgb), 0.7);
-  color: var(--subtext1);
+  color: var(--fg-soft);
   border: none;
   border-radius: 16px;
   min-width: 32px;
@@ -1220,7 +1223,7 @@
 }
 .control-center-menu .section.system-controls .button:hover {
   background-color: rgba(var(--surface1-rgb), 0.9);
-  color: var(--text);
+  color: var(--fg);
 }
 .control-center-menu .section.quick-actions .button {
   margin: 0 4px 8px 4px;
@@ -1233,7 +1236,7 @@
   background-color: rgba(var(--surface0-rgb), 0.6);
   border: 1px solid rgba(var(--surface1-rgb), 0.4);
   border-radius: var(--radius-pill);
-  color: var(--subtext1);
+  color: var(--fg-soft);
   min-height: 48px;
 }
 .control-center-menu .section.quick-actions .button .icon:hover {
@@ -1247,7 +1250,7 @@
 .control-center-menu .section.quick-actions .button .title {
   font-size: 11px;
   font-weight: 500;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   margin: 6px 0 0 0;
   padding: 0;
 }
@@ -1260,19 +1263,19 @@
 .control-center-menu .section.sliders .slider .icon {
   font-family: "Segoe Fluent Icons";
   font-size: 16px;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   min-width: 36px;
 }
 .control-center-menu .section.sliders .slider .value {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
   min-width: 40px;
 }
 .control-center-menu .section.sliders .slider .source-selector {
   font-family: "Segoe Fluent Icons";
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   background-color: transparent;
   border: none;
   border-radius: var(--radius-item);
@@ -1298,19 +1301,19 @@
 .control-center-menu .section.power .plan-name .title,
 .control-center-menu .section.power .mode-name .title {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 .control-center-menu .section.power .plan-name .subtext,
 .control-center-menu .section.power .mode-name .subtext {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 .control-center-menu .section.power .plan-name .icon,
 .control-center-menu .section.power .mode-name .icon {
   font-family: "Segoe Fluent Icons";
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 
 /* ── GitHub ── */
@@ -1336,20 +1339,20 @@
 .github-menu .contents .item .title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--subtext0);
+  color: var(--fg-secondary);
 }
 .github-menu .contents .item .description {
   font-size: 11px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding-top: 2px;
 }
 .github-menu .contents .item.new .title {
-  color: var(--text);
+  color: var(--fg);
 }
 .github-menu .contents .item .icon {
   font-family: var(--font-icon);
   font-size: 16px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   padding: 0 12px 0 0;
 }
 .github-menu .contents .item.new .icon {
@@ -1357,7 +1360,7 @@
 }
 .github-menu .footer .label {
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
 }
 
 /* ── Systray overflow popup ── */
@@ -1387,7 +1390,7 @@
 .power-menu-compact .profile-info .profile-username {
   font-size: 15px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
   margin-top: 8px;
 }
 .power-menu-compact .profile-info .profile-account-type {
@@ -1401,7 +1404,7 @@
 }
 .power-menu-compact .profile-info .profile-email {
   font-size: 12px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   margin-top: 6px;
 }
 .power-menu-compact .manage-accounts {
@@ -1430,7 +1433,7 @@
 .power-menu-compact .button .icon {
   font-family: var(--font-icon);
   font-size: 15px;
-  color: var(--overlay1);
+  color: var(--fg-subtle);
   min-width: 22px;
   padding: 0 12px 0 0;
 }
@@ -1438,11 +1441,11 @@
   font-family: var(--font-text);
   font-size: 13px;
   font-weight: 500;
-  color: var(--subtext1);
+  color: var(--fg-soft);
 }
 .power-menu-compact .icon.hover,
 .power-menu-compact .label.hover {
-  color: var(--text);
+  color: var(--fg);
 }
 
 /* ───────────────────────────── Launchpad (app grid popup) ─────────────────────────────
@@ -1454,7 +1457,7 @@
  */
 
 .launchpad .launchpad-container {
-  background-color: rgba(var(--mantle-rgb), 0.92);
+  background-color: rgba(var(--popup-rgb), 0.92);
   border-radius: var(--radius-outer);
 }
 
@@ -1474,7 +1477,7 @@
   padding: 8px 16px;
   font-family: var(--font-text);
   font-size: 14px;
-  color: var(--text);
+  color: var(--fg);
   background-color: rgba(var(--crust-rgb), 0.6);
   border: 1px solid var(--surface1);
   border-radius: var(--radius-outer);
@@ -1520,7 +1523,7 @@
   font-family: var(--font-text);
   font-size: 12px;
   font-weight: 500;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   margin-top: 12px;
   padding: 0 2px;
 }
@@ -1535,12 +1538,12 @@
 .launchpad .group-back-button {
   background-color: transparent;
   border: none;
-  color: var(--subtext1);
+  color: var(--fg-soft);
   font-size: 16px;
   padding: 0 24px;
 }
 .launchpad .group-back-button:hover {
-  color: var(--text);
+  color: var(--fg);
 }
 
 .launchpad .drop-overlay {
@@ -1549,17 +1552,17 @@
   border-radius: var(--radius-outer);
 }
 .launchpad .drop-overlay .text {
-  color: var(--text);
+  color: var(--fg);
   font-size: 40px;
   font-weight: 600;
 }
 
 /* Add / edit app dialog */
 .launchpad .app-dialog {
-  background-color: var(--mantle);
+  background-color: var(--popup);
 }
 .launchpad .app-dialog .message {
-  color: var(--text);
+  color: var(--fg);
   font-size: 12px;
   font-weight: 600;
   padding: 12px 0 0 0;
@@ -1575,7 +1578,7 @@
   margin: 8px 0 4px 0;
   min-height: 30px;
   font-size: 12px;
-  color: var(--text);
+  color: var(--fg);
 }
 .launchpad .app-dialog .title-field:focus,
 .launchpad .app-dialog .path-field:focus,
@@ -1601,7 +1604,7 @@
   margin: 8px 0 4px 8px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--fg);
 }
 .launchpad .app-dialog .button:hover,
 .launchpad .app-dialog .button:focus {

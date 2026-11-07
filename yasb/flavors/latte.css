@@ -54,6 +54,23 @@
   --crust: #dce0e8;
   --crust-rgb: 220, 224, 232;
 
-  /* Text on accent-filled backgrounds */
+  /* Roles: styles.css uses these, not the palette names, so each flavor can
+     map them for contrast. Latte has a light bar, light popups and one-step-darker text,
+     because its dim grays are too faint on a light background. */
+  /* Surfaces */
+  --bar-rgb: var(--crust-rgb);
+  --pill-bg: var(--base);
+  --popup: var(--base);
+  --popup-rgb: var(--base-rgb);
+  /* Text, strongest to faintest */
+  --fg: var(--text);
+  --fg-soft: var(--subtext1);
+  --fg-secondary: var(--subtext1);
+  --fg-muted: var(--subtext0);
+  --fg-subtle: var(--subtext0);
+  --fg-faint: var(--overlay2);
+  /* Accent used unless styles.css picks one, and text on accent fills */
+  --flavor-accent: var(--mauve);
+  --flavor-accent-rgb: var(--mauve-rgb);
   --on-accent: var(--base);
 }
