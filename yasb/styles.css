@@ -22,7 +22,7 @@
 @import "flavors/mocha.css";
 
 :root {
-  /* Accent: the flavor's default (lavender, or mauve in Latte), or any Catppuccin
+  /* Accent: the flavor's default (mauve), or any Catppuccin
      accent name, for example var(--blue) and var(--blue-rgb). Change both lines. */
   --accent: var(--flavor-accent);
   --accent-rgb: var(--flavor-accent-rgb);
@@ -227,6 +227,106 @@
 }
 .komorebi-workspaces .offline-status {
   color: var(--fg-faint);
+}
+
+/* GlazeWM: not in config.yaml by default; docs/glazewm.md shows how to swap it in.
+   Same look as the komorebi widgets. "active" is the workspace shown on this
+   monitor; "focused" is the one with keyboard focus, so it gets the accent.
+   The focused_* rules must come after the active_* ones. Workspace buttons set
+   their text directly, or in a .label child when app_icons is on, so both are styled. */
+.glazewm-workspaces .widget-container {
+  padding: 0 2px;
+}
+.glazewm-workspaces .ws-btn {
+  font-family: var(--font-text);
+  font-size: 12px;
+  color: var(--fg-faint);
+  min-width: 24px;
+  padding: 0 8px;
+  min-height: 26px;
+  max-height: 26px;
+  margin: 0 1px;
+  border: none;
+  border-radius: var(--radius-item);
+  background-color: transparent;
+}
+.glazewm-workspaces .ws-btn .label {
+  font-family: var(--font-text);
+  font-size: 12px;
+  color: var(--fg-faint);
+}
+.glazewm-workspaces .ws-btn.populated,
+.glazewm-workspaces .ws-btn.populated .label {
+  color: var(--fg-secondary);
+}
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_empty {
+  background-color: rgba(var(--surface1-rgb), 0.45);
+}
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_populated .label,
+.glazewm-workspaces .ws-btn.active_empty,
+.glazewm-workspaces .ws-btn.active_empty .label {
+  color: var(--fg);
+}
+.glazewm-workspaces .ws-btn.focused_populated,
+.glazewm-workspaces .ws-btn.focused_empty {
+  background-color: rgba(var(--accent-rgb), 0.18);
+}
+.glazewm-workspaces .ws-btn.focused_populated,
+.glazewm-workspaces .ws-btn.focused_populated .label,
+.glazewm-workspaces .ws-btn.focused_empty,
+.glazewm-workspaces .ws-btn.focused_empty .label {
+  color: var(--accent);
+  font-weight: 700;
+}
+.glazewm-workspaces .ws-btn .icon {
+  padding: 0 0 0 4px;
+}
+.glazewm-workspaces .ws-btn:hover {
+  background-color: rgba(var(--surface1-rgb), 0.6);
+}
+.glazewm-workspaces .offline-status {
+  color: var(--fg-faint);
+}
+
+/* Tiling direction: an icon button, like the komorebi layout icon */
+.glazewm-tiling-direction .btn {
+  font-family: var(--font-icon);
+  font-size: 15px;
+  color: var(--fg-secondary);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-item);
+  padding: 0 6px;
+  min-height: 26px;
+  max-height: 26px;
+}
+.glazewm-tiling-direction .btn:hover {
+  background-color: rgba(var(--surface1-rgb), 0.6);
+}
+
+/* Binding mode: only shown while a mode such as resize is on, so it uses peach,
+   the theme's "something is waiting on you" color */
+.glazewm-binding-mode .widget-container {
+  padding: 0 6px;
+}
+.glazewm-binding-mode .icon {
+  font-family: var(--font-icon);
+  font-size: 14px;
+  color: var(--peach);
+  padding: 0 5px 0 0;
+}
+.glazewm-binding-mode .label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--peach);
+}
+.glazewm-binding-mode .label-offline {
+  color: var(--fg-faint);
+}
+.glazewm-binding-mode .widget-container:hover {
+  background-color: rgba(var(--surface1-rgb), 0.6);
 }
 
 /* Active window title — plain text, no pill */

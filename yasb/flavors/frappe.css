@@ -72,7 +72,7 @@
   --fg-subtle: var(--overlay1);
   --fg-faint: var(--overlay0);
   /* Accent used unless styles.css picks one, and text on accent fills */
-  --flavor-accent: var(--lavender);
-  --flavor-accent-rgb: var(--lavender-rgb);
+  --flavor-accent: var(--mauve);
+  --flavor-accent-rgb: var(--mauve-rgb);
   --on-accent: var(--crust);
 }
