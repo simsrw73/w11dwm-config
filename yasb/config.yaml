@@ -107,15 +107,6 @@ widgets:
       collapse_options:
         enabled: false
 
-  wm_slim:
-    type: "yasb.grouper.GrouperWidget"
-    options:
-      class_name: "wm-pill"
-      widgets: ["komorebi_workspaces"]
-      hide_empty: true
-      collapse_options:
-        enabled: false
-
   time:
     type: "yasb.grouper.GrouperWidget"
     options:
