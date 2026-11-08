@@ -15,6 +15,7 @@
 ; Alt+/ shows the shortcuts registered through Legend plus legend/pages/*.md.
 ; Page letters match the top level of the Win+Space launcher (Chords.ahk), so a
 ; letter means the same app in both. Pages of my own use letters the launcher doesn't.
+; GameMode suspends this whole script while a game has focus; Ctrl+Alt+G toggles it.
 Legend.Start({
     Pages: [A_ScriptDir "\legend\pages"],
     PageKeys: Map(
@@ -23,7 +24,8 @@ Legend.Start({
         "Koffee", "k", "Bitwarden", "p",
         "komorebi", "w", "AutoHotkey", "h", "Launch", "l", "Pickers", "i"),
     Themes: [A_ScriptDir "\legend\themes"],
-    Theme: "mocha-yasb"
+    Theme: "mocha-yasb",
+    GameMode: true
 })
 
 application := App(A_ScriptFullPath)
