@@ -23,7 +23,7 @@
   "Theme": "Catppuccin Mocha",
   "UseDropShadowEffect": true,
   "BackdropType": 1,
-  "ReleaseNotesVersion": "2.1.3",
+  "ReleaseNotesVersion": "2.1.4",
   "WindowHeightSize": 42,
   "ItemHeightSize": 58,
   "QueryBoxFontSize": 16,
@@ -47,7 +47,7 @@
   "SoundVolume": 50,
   "ShowBadges": true,
   "ShowBadgesGlobalOnly": false,
-  "SettingWindowFont": "Segoe UI",
+  "SettingWindowFont": "Inter",
   "UseClock": true,
   "UseDate": true,
   "TimeFormat": "HH:mm",
@@ -158,7 +158,16 @@
   "MaxResultsToShow": 7,
   "ActivateTimes": 0,
   "CustomPluginHotkeys": [],
-  "CustomShortcuts": [],
+  "CustomShortcuts": [
+    {
+      "Value": "notepad\u002B\u002B",
+      "Key": "npp"
+    },
+    {
+      "Value": "AutoHotkey",
+      "Key": "ahk"
+    }
+  ],
   "DontPromptUpdateMsg": false,
   "EnableUpdateLog": false,
   "StartFlowLauncherOnSystemStartup": false,
@@ -168,7 +177,7 @@
   "LeaveCmdOpen": false,
   "HideWhenDeactivated": true,
   "ShowTaskbarWhenInvoked": false,
-  "ShowAtTopmost": false,
+  "ShowAtTopmost": true,
   "SearchQueryResultsWithDelay": true,
   "SearchDelayTime": 150,
   "SearchWindowScreen": "Focus",
@@ -186,8 +195,8 @@
   "AnimationSpeed": "Medium",
   "CustomAnimationLength": 360,
   "PluginSettings": {
-    "PythonExecutablePath": "C:\\Users\\simsrw73\\AppData\\Local\\Python\\bin\\pythonw.exe",
-    "NodeExecutablePath": "C:\\Users\\simsrw73\\.local\\state\\fnm_multishells\\31168_1790347936793\\node.exe",
+    "PythonExecutablePath": "C:\\Users\\simsrw73\\AppData\\Roaming\\FlowLauncher\\Environments\\Python\\PythonEmbeddable-v3.11.4\\pythonw.exe",
+    "NodeExecutablePath": "",
     "Plugins": {
       "0ECADE17459B49F587BF81DC3A125110": {
         "ID": "0ECADE17459B49F587BF81DC3A125110",
@@ -579,6 +588,42 @@
         "Version": "1.0.1",
         "ActionKeywords": [
           "set"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "6c22cffe6b3546ec9087abe149c4a575": {
+        "ID": "6c22cffe6b3546ec9087abe149c4a575",
+        "Name": "GitHub",
+        "Version": "1.3.1",
+        "ActionKeywords": [
+          "gh"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "A7F3C4E16B8D4B5AB2D7139EEC8FA0B4": {
+        "ID": "A7F3C4E16B8D4B5AB2D7139EEC8FA0B4",
+        "Name": "SteamFlow",
+        "Version": "2.2.0",
+        "ActionKeywords": [
+          "steam"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
+      },
+      "b7ffaa48-ae89-4de7-ad41-43ca1eeb3ce3": {
+        "ID": "b7ffaa48-ae89-4de7-ad41-43ca1eeb3ce3",
+        "Name": "Open Windows Terminal Profiles",
+        "Version": "1.0.0",
+        "ActionKeywords": [
+          "wt"
         ],
         "Priority": 0,
         "SearchDelayTime": null,

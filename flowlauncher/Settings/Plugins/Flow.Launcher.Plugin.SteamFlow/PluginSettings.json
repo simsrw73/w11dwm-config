@@ -1,0 +1,19 @@
+{
+  "BlacklistedAppIds": "228980",
+  "ShowPlaytime": true,
+  "ShowLastPlayed": true,
+  "ShowAchievements": true,
+  "SortLocalByRecent": true,
+  "HideHiddenGames": true,
+  "ShowPrices": true,
+  "ShowPlayerCount": true,
+  "ShowPositiveReviews": true,
+  "ShowSteamDbContextMenu": true,
+  "ShowCsRinContextMenu": true,
+  "ShowProtonDbContextMenu": false,
+  "ShowGuidesContextMenu": true,
+  "ShowDiscussionsContextMenu": true,
+  "ShowScreenshotsContextMenu": false,
+  "ShowPropertiesContextMenu": false,
+  "EnableSmokeApiContextMenu": false
+}
