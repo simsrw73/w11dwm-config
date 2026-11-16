@@ -629,6 +629,18 @@
         "SearchDelayTime": null,
         "Disabled": false,
         "HomeDisabled": false
+      },
+      "0930723F-73EA-488A-BEE9-8B8D4845B2F1": {
+        "ID": "0930723F-73EA-488A-BEE9-8B8D4845B2F1",
+        "Name": "PowerToys",
+        "Version": "1.1.0",
+        "ActionKeywords": [
+          "ptoys"
+        ],
+        "Priority": 0,
+        "SearchDelayTime": null,
+        "Disabled": false,
+        "HomeDisabled": false
       }
     }
   }

@@ -27,7 +27,8 @@ $Repo = $PSScriptRoot
 # Override: files to copy from somewhere else (relative path => full source path).
 $Map = [ordered]@{
     komorebi     = @{ From = 'komorebi';     Include = 'komorebi.json', 'applications.json' }
-    yasb         = @{ From = 'yasb';         Include = 'config.yaml', 'styles.css', 'flavors/*.css', 'launchpad/apps.json', 'launchpad/icons/*.png'
+    yasb         = @{ From = 'yasb';         Include = 'config.yaml', 'styles.css', 'flavors/*.css', 'launchpad/apps.json', 'launchpad/icons/*.png',
+                                                       'scripts/*.ps1'
                       Override = @{ 'styles.css' = (Join-Path $Catelier 'styles.css') } }
     autohotkey   = @{ From = 'AutoHotKey';   Include = '*.ahk', 'Lib/*.ahk' }
     flowlauncher = @{ From = 'FlowLauncher'; Include = 'Settings/Settings.json', 'Settings/Plugins/*/Settings.json',

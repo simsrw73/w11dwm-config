@@ -136,7 +136,15 @@ widgets:
     type: "yasb.grouper.GrouperWidget"
     options:
       class_name: "controls-pill"
-      widgets: ["systray", "wifi", "bluetooth", "volume", "control_center"]
+      widgets:
+        [
+          "systray",
+          "bluetooth",
+          "wifi",
+          "display_mode",
+          "volume",
+          "control_center",
+        ]
       collapse_options:
         enabled: false
 
@@ -229,8 +237,8 @@ widgets:
         tiling: "\U000F148E" # nf-md-view_quilt_outline
       callbacks:
         on_left: "toggle_layout_menu"
-        on_middle: "next_layout"
-        on_right: "prev_layout"
+        on_middle: "toggle_monocle"
+        on_right: "do_nothing"
       layout_menu:
         blur: true
         round_corners: true
@@ -288,7 +296,7 @@ widgets:
       monitor_exclusive: true
       callbacks:
         on_left: "do_nothing"
-        on_middle: "do_nothing"
+        on_middle: "toggle_label"
         on_right: "do_nothing"
 
   # ───────────────────────────── Center ─────────────────────────────
@@ -312,8 +320,8 @@ widgets:
         show_week_numbers: true
       callbacks:
         on_left: "toggle_calendar"
-        on_middle: "do_nothing"
-        on_right: "do_nothing"
+        on_middle: "toggle_timer"
+        on_right: "context_menu"
 
   clock_date:
     type: "yasb.clock.ClockWidget"
@@ -321,7 +329,7 @@ widgets:
       class_name: "date"
       label: "{%Y-%m-%d}"
       label_alt: "{%Y-%m-%d}"
-      tooltip: false
+      tooltip: true
       update_interval: 1000
       calendar:
         blur: true
@@ -335,8 +343,8 @@ widgets:
         show_week_numbers: true
       callbacks:
         on_left: "toggle_calendar"
-        on_middle: "do_nothing"
-        on_right: "do_nothing"
+        on_middle: "toggle_alarm"
+        on_right: "context_menu"
 
   # ───────────────────────────── Right: metrics (dimmed, fixed width) ─────────────────────────────
   memory:
@@ -537,9 +545,9 @@ widgets:
       max_label_size: 28
       tooltip: true
       callbacks:
-        on_left: "toggle_media_menu"
-        on_middle: "do_nothing"
-        on_right: "do_nothing"
+        on_left: "toggle_play_pause"
+        on_middle: "open_media_source"
+        on_right: "toggle_media_menu"
       media_menu:
         blur: true
         artwork_background: true
@@ -632,6 +640,27 @@ widgets:
       callbacks:
         on_left: "toggle_menu"
 
+  # Toggles Extend / Second screen only. Going to second screen only stops
+  # komorebi first; scripts/display-mode.ps1 has the details. yasb rebuilds the
+  # bars after a display change, which refreshes the icon, so it rarely polls.
+  display_mode:
+    type: "yasb.custom.CustomWidget"
+    options:
+      # Not in a <span>: the custom widget doesn't fill in {data} inside spans
+      label: "{data[icon]}"
+      label_placeholder: "\U000F037A" # nf-md-monitor_multiple
+      class_name: "display-mode"
+      tooltip: true
+      tooltip_label: "{data[tooltip]}"
+      exec_options:
+        run_cmd: "pwsh -NoProfile -File %USERPROFILE%/.config/yasb/scripts/display-mode.ps1"
+        run_interval: 60000
+        return_format: "json"
+      callbacks:
+        on_left: "exec pwsh -NoProfile -File %USERPROFILE%/.config/yasb/scripts/display-mode.ps1 -Toggle"
+        on_middle: "do_nothing"
+        on_right: "exec cmd.exe /c start ms-settings:display"
+
   bluetooth:
     type: "yasb.bluetooth.BluetoothWidget"
     options:
@@ -645,7 +674,7 @@ widgets:
       callbacks:
         on_left: "toggle_menu"
         on_middle: "do_nothing"
-        on_right: "do_nothing"
+        on_right: "exec cmd.exe /c start ms-settings:bluetooth"
       menu_config:
         blur: true
         round_corners: true
@@ -686,8 +715,8 @@ widgets:
           toggle_up: "\uf077" # nf-fa-chevron_up
       callbacks:
         on_left: "toggle_volume_menu"
-        on_middle: "do_nothing"
-        on_right: "toggle_mute"
+        on_middle: "toggle_mute"
+        on_right: "do_nothing"
 
   wifi:
     type: "yasb.wifi.WifiWidget"
@@ -707,8 +736,8 @@ widgets:
         - "\U000F0928" # nf-md-wifi_strength_4
       callbacks:
         on_left: "toggle_menu"
-        on_middle: "exec cmd.exe /c start ms-settings:network"
-        on_right: "do_nothing"
+        on_middle: "do_nothing"
+        on_right: "exec cmd.exe /c start ms-settings:network"
       menu_config:
         blur: true
         round_corners: true
