@@ -1,0 +1,31 @@
+# wpm unit: CrystalDiskInfo, elevated, resident in the tray.
+#
+# CrystalDiskInfo needs admin to read SMART data, and wpmd isn't elevated,
+# so this works like the komorebi unit: it runs the elevated
+# "wpm-crystaldiskinfo" scheduled task (no trigger; see install-tasks.ps1),
+# which starts DiskInfo64.exe /Startup, and adopts it by name. wpm can't
+# kill an elevated process, so stopping goes through `schtasks /End`.
+
+[Unit]
+Name = "crystaldiskinfo"
+Description = "Disk SMART monitoring in the tray (elevated, via scheduled task)"
+
+[Service]
+Kind = "Forking"
+Autostart = true
+Restart = "OnFailure"
+RestartSec = 5
+
+[Service.ExecStart]
+Executable = "schtasks.exe"
+Arguments = ["/Run", "/TN", "wpm-crystaldiskinfo"]
+# Re-running a running task is a no-op; give a slow logon about 20s.
+RetryLimit = 10
+
+[[Service.ExecStop]]
+Executable = "schtasks.exe"
+Arguments = ["/End", "/TN", "wpm-crystaldiskinfo"]
+
+[Service.Healthcheck.Process]
+Target = "DiskInfo64.exe"
+DelaySec = 2

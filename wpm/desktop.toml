@@ -8,6 +8,8 @@ Name = "desktop"
 Description = "Set up a sensible desktop environment for Windows 11."
 Requires = [
     "komorebi",
+    "librehardwaremonitor",
+    "crystaldiskinfo",
     "yasb",
     "autohotkey",
     "flowlauncher"

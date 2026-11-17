@@ -1,7 +1,8 @@
 # wpm desktop
 
 [wpm](https://github.com/LGUG2Z/wpm) units that start the Windows desktop
-(komorebi, yasb, AutoHotkey, Flow Launcher) at logon and keep it alive,
+(komorebi, yasb, AutoHotkey, Flow Launcher, plus LibreHardwareMonitor and
+CrystalDiskInfo for yasb) at logon and keep it alive,
 including apps that replace their own process when they reload, restart or
 update.
 
@@ -9,11 +10,13 @@ update.
 | --- | --- |
 | `watchdog.ps1` | The one watchdog script every unit runs. |
 | `komorebi.toml` | komorebi, elevated, through the `komorebi` scheduled task. |
-| `yasb.toml` | yasb: restart if it exits or its bar windows hang. Requires komorebi. |
+| `yasb.toml` | yasb: restart if it exits or its bar windows hang. Requires komorebi, LibreHardwareMonitor and CrystalDiskInfo. |
+| `librehardwaremonitor.toml` | LibreHardwareMonitor, elevated, through the `wpm-librehardwaremonitor` task. |
+| `crystaldiskinfo.toml` | CrystalDiskInfo, elevated, through the `wpm-crystaldiskinfo` task. |
 | `autohotkey.toml` | The primary AutoHotkey script (UIA build). |
 | `flowlauncher.toml` | Flow Launcher. |
 | `desktop.toml` | Starts all of the above by hand: `wpmctl start desktop`. |
-| `install-tasks.ps1` | Scheduled tasks: `wpmd` at logon, and the elevated `komorebi` task. |
+| `install-tasks.ps1` | Scheduled tasks: `wpmd` at logon, and the elevated `komorebi`, `wpm-librehardwaremonitor` and `wpm-crystaldiskinfo` tasks. |
 | `tests/Watchdog.Tests.ps1` | Pester tests: `Invoke-Pester tests/Watchdog.Tests.ps1`. |
 
 ## Why wpm doesn't run yasb, AutoHotkey and Flow Launcher directly
@@ -106,6 +109,21 @@ re-running the task while it's still starting does nothing. Without it, wpm
 gave up after about 10s, and yasb, which requires komorebi, was never
 started.
 
+**LibreHardwareMonitor and CrystalDiskInfo** work the same way as
+komorebi: both need admin (sensors, SMART data), so each has an elevated
+task with no trigger (`wpm-librehardwaremonitor`, `wpm-crystaldiskinfo`),
+started with `schtasks /Run` and adopted by process name
+(`LibreHardwareMonitor.exe`, `DiskInfo64.exe`). Neither has a stop command,
+so `ExecStop` is `schtasks /End`, which ends the task's process (a hard
+kill: LHM won't save settings changed since it started). CrystalDiskInfo
+runs with `/Startup`, so it goes straight to the tray. yasb's drive widget
+reads LHM's web server on port 8085 (Options > Remote Web Server in LHM).
+
+Turn **off** each app's own autostart (LHM's Options > Run On Windows
+Startup, CrystalDiskInfo's Function > Startup): each registers a logon task
+of its own (`LibreHardwareMonitor`, `CrystalDiskInfo`) that would start it
+outside wpm.
+
 `komorebic fetch-asc` isn't run at startup: it's a blocking network call at
 logon. Run it by hand when you want to update `applications.json`.
 
@@ -114,7 +132,10 @@ logon. Run it by hand when you want to update `applications.json`.
 Every unit except `desktop` has `Autostart = true`, so one unit failing its
 healthcheck can't stop the others from starting (wpm stops starting a unit
 at its first failed dependency). `Requires` still sets the order:
-autohotkey, then komorebi, then yasb. Flow Launcher is independent.
+autohotkey, then komorebi, LibreHardwareMonitor and CrystalDiskInfo, then
+yasb. Flow Launcher is independent. If LHM or CrystalDiskInfo fails to
+start, yasb isn't started either; start it by hand with `wpmctl start yasb`
+once the dependency is fixed.
 
 ## Stopping an app on purpose
 
@@ -134,6 +155,8 @@ Use `autohotkey-watchdog.pause` or `flowlauncher-watchdog.pause` for the
 others. `wpmctl stop <unit>` also works, but note that this wpm build
 restarts `Restart = "Always"` units after an explicit stop. komorebi has no
 watchdog: `wpmctl stop komorebi` or `komorebic stop` keeps it stopped.
+Likewise `wpmctl stop librehardwaremonitor` / `crystaldiskinfo`, or exiting
+the app from its tray icon (a clean exit isn't restarted).
 
 ## Install
 
@@ -142,7 +165,8 @@ watchdog: `wpmctl stop komorebi` or `komorebic stop` keeps it stopped.
 
 ```powershell
 wpmctl reload
-wpmctl start desktop     # or one unit: komorebi, yasb, autohotkey, flowlauncher
+wpmctl start desktop     # or one unit: komorebi, yasb, autohotkey, flowlauncher,
+                         # librehardwaremonitor, crystaldiskinfo
 wpmctl log yasb          # watch what it's doing
 ```
 
@@ -152,8 +176,10 @@ also launches wpmd now). It registers:
 
 - `wpmd`: runs at logon, hidden and **not** elevated.
 - `komorebi`: elevated, with no trigger; only the komorebi unit starts it.
+- `wpm-librehardwaremonitor`, `wpm-crystaldiskinfo`: the same, for their
+  units.
 
-Both tasks run at priority 4. Task Scheduler's default of 7 runs the task,
+All tasks run at priority 4. Task Scheduler's default of 7 runs the task,
 and every process it starts, at BelowNormal priority, which slows logon and
 leaves yasb and Flow Launcher less responsive.
 

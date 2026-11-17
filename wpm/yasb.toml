@@ -8,7 +8,9 @@
 Name = "yasb"
 Description = "Restarts yasb if it exits or its bar windows stop responding"
 Requires = [
-    "komorebi"
+    "komorebi",
+    "librehardwaremonitor",
+    "crystaldiskinfo"
 ]
 
 [Service]

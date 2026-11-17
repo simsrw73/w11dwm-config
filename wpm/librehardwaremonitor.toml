@@ -1,0 +1,32 @@
+# wpm unit: LibreHardwareMonitor, elevated (yasb's drive health/temp widget
+# reads its web server on :8085).
+#
+# LHM needs admin to read most sensors, and wpmd isn't elevated, so this
+# works like the komorebi unit: it runs the elevated
+# "wpm-librehardwaremonitor" scheduled task (no trigger; see
+# install-tasks.ps1) and adopts LibreHardwareMonitor.exe by name. wpm can't
+# kill an elevated process, so stopping goes through `schtasks /End`.
+
+[Unit]
+Name = "librehardwaremonitor"
+Description = "Hardware sensors and web server for yasb (elevated, via scheduled task)"
+
+[Service]
+Kind = "Forking"
+Autostart = true
+Restart = "OnFailure"
+RestartSec = 5
+
+[Service.ExecStart]
+Executable = "schtasks.exe"
+Arguments = ["/Run", "/TN", "wpm-librehardwaremonitor"]
+# Re-running a running task is a no-op; give a slow logon about 20s.
+RetryLimit = 10
+
+[[Service.ExecStop]]
+Executable = "schtasks.exe"
+Arguments = ["/End", "/TN", "wpm-librehardwaremonitor"]
+
+[Service.Healthcheck.Process]
+Target = "LibreHardwareMonitor.exe"
+DelaySec = 2
